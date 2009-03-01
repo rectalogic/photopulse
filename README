@@ -32,3 +32,11 @@ To build the Windows installer from a tag use:
 The application can also be built and run on Mac OS X, without the
 native components. Use the ant task:
   ant -Dphotopulse.java.required.version=1.5.0_16 run-wizard
+
+* Modifying
+
+The effects and transitions are built using JGenerator using Macromedia
+Generator 2 templates. Generator is now defunct, and the templates could
+only be created using the Flash 5 authoring environment.
+So this is kind of a dead end. But there's other interesting pieces
+in Photopulse.
