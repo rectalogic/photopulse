@@ -19,24 +19,16 @@ A private JRE is bundled with the application installer, the ant script
 checks that it is being built with the same version of Java which is 1.5.0_04.
 To build with a different version of Java pass
   -Dphotopulse.java.required.version=1.X.X_XX
-to ant to specify the version.
+to ant to specify the version. Also set the JAVA_HOME environment variable.
 
 The native components are included precompiled, they can be rebuilt using
 Visual Studio using ant:
-  ant bin
+  build.bat bin
 
 To build the Windows installer from a tag use:
-  ant -Dexport.tag=X.Y.Z export-installer
+  build.bat -Dexport.tag=X.Y.Z export-installer
 
 
 The application can also be built and run on Mac OS X, without the
 native components. Use the ant task:
   ant -Dphotopulse.java.required.version=1.5.0_16 run-wizard
-
-* Modifying
-
-The effects and transitions are built using JGenerator using Macromedia
-Generator 2 templates. Generator is now defunct, and the templates could
-only be created using the Flash 5 authoring environment.
-So this is kind of a dead end. But there's other interesting pieces
-in Photopulse.

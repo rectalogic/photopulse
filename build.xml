@@ -70,7 +70,7 @@
     </selector>
 
     <target name="prepare-revision" unless="export.revision">
-        <exec dir="." executable="git" outputproperty="export.revision" failifexecutionfails="false">
+        <exec dir="." executable="git" outputproperty="export.revision" vmlauncher="false" failifexecutionfails="false">
             <arg value="describe"/>
         </exec>
 		<!-- Default value -->
@@ -719,7 +719,7 @@
 
         <delete dir="${build.home}/export-${branding}-${export.tag}"/>
         <echo message="Exporting tag ${branding}/${export.tag}"/>
-        <exec executable="git" logError="true" output="${build.home}/export-${branding}-${export.tag}.zip" failonerror="true">
+        <exec executable="git" logError="true" output="${build.home}/export-${branding}-${export.tag}.zip" vmlauncher="false" failonerror="true">
             <arg value="archive"/>
             <arg value="--format=zip"/>
             <arg value="-0"/>
