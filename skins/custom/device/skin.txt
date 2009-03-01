@@ -1,0 +1,39 @@
+# $Rev: 538 $
+
+# See http://www.macromedia.com/software/flashplayer/pocketpc/devkit/
+
+name=Cellphone and PDA
+description=No theme. Designed for use on the PocketPC and other PDA devices and cellphones. 240x240 works in PocketIE with the addressbar. 262x240 and 240x262 work in PocketIE with no addressbar. 227x208 and 208x227 work with the Motorola A290 cellphone.
+skins=ppab,ppnabflip,ppnab,motflip,mot
+
+# PocketPC PocketIE
+# Browser w/addressbar, flipped
+# Not used since square
+#ppabflip.size=240,240
+#ppabflip.stage=-240,0,240,240
+#ppabflip.backgrounds=fs
+#ppabflip.background.fs=rootflipper.swf
+
+# PocketPC PocketIE
+# Browser w/addressbar
+ppab.size=240,240
+
+# PocketPC PocketIE
+# Browser no addressbar, flipped
+ppnabflip.size=240,262
+ppnabflip.stage=-262,0,262,240
+ppnabflip.backgrounds=fs
+ppnabflip.background.fs=rootflipper.swf
+
+# PocketPC PocketIE
+# Browser no addressbar
+ppnab.size=240,262
+
+# Motorola A920 cellphone, flipped
+motflip.size=208,227
+motflip.stage=-227,0,227,208
+motflip.backgrounds=fs
+motflip.background.fs=rootflipper.swf
+
+# Motorola A920 cellphone
+mot.size=208,227

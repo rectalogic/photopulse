@@ -1,0 +1,274 @@
+# ***** BEGIN LICENSE BLOCK *****
+# Version: MPL 1.1
+#
+# The contents of this file are subject to the Mozilla Public License Version
+# 1.1 (the "License"); you may not use this file except in compliance with
+# the License. You may obtain a copy of the License at
+# http://www.mozilla.org/MPL/
+#
+# Software distributed under the License is distributed on an "AS IS" basis,
+# WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+# for the specific language governing rights and limitations under the
+# License.
+#
+# The Original Code is Photica Photopulse.
+#
+# The Initial Developer of the Original Code is
+# Photica Inc.
+# Portions created by the Initial Developer are Copyright (C) 2004
+# the Initial Developer. All Rights Reserved.
+#
+# Contributor(s):
+# Andrew Wason, Mike Mills
+# info@photica.com
+#
+# ***** END LICENSE BLOCK *****
+from JascApp import *
+import os
+
+# The directory these scripts are in should be added to PSP via File|Preferences|File Locations...
+# Then add to Scripts - Trusted list.
+
+try:
+    SkinDirectory = os.environ['SkinDirectory']
+except KeyError:
+    SkinDirectory = None
+
+SilentSettings = {
+        'ExecutionMode': App.Constants.ExecutionMode.Silent,
+        'AutoActionMode': App.Constants.AutoActionMode.Match
+        }
+
+def ScriptProperties():
+    return {
+        'Author': 'Andrew Wason',
+        'Copyright': 'Copyright © 2004 Photica Inc.',
+        'Description': 'Creates a PhotoPulse skin package from a PSP Picture Frame.',
+        'Host': 'Paint Shop Pro',
+        'Host Version': '8.10'
+        }
+
+
+def Do(Environment):
+    # EnableOptimizedScriptUndo
+    App.Do(Environment, 'EnableOptimizedScriptUndo', {
+            })
+
+    # Prompt for skin directory if we haven't already
+    global SkinDirectory
+    if (not SkinDirectory):
+        Result = App.Do(Environment, 'GetString', {
+                'DefaultText': SkinDirectory,
+                'DialogTitle': 'Enter Skin Directory',
+                'Prompt': 'Enter the full path where skins should be created.',
+                })
+        if (Result['OKButton'] != App.Constants.Boolean.true):
+            return
+        SkinDirectory = Result['EnteredText']
+        os.environ['SkinDirectory'] = SkinDirectory
+
+    LandscapeSizes = (
+            (320,240),
+            (300,200),
+            (400,300),
+            (450,300),
+            (640,480),
+            (600,400)
+            )
+    PortraitSizes = (
+            (240,320),
+            (200,300),
+            (300,400),
+            (300,450),
+            (480,640),
+            (400,600)
+            )
+
+    Results = []
+
+    # Landscape frames
+    MakeFrames(Environment, LandscapeSizes, Results)
+
+    # Portrait frames
+    MakeFrames(Environment, PortraitSizes, Results)
+
+    # Finish skin if everything wasn't cancelled
+    if (len(Results)):
+        # Thumbnail
+        Thumbnail = MakeFrame(Environment, 100, 100, App.Constants.Boolean.false)
+        # skin.txt manifest
+        WriteManifest(Results, Thumbnail)
+
+
+def MakeFrames(Environment, Sizes, Results):
+    # Only show PictureFrame dialog on the first frame in a size aspect series.
+    # If it is canceled, skip subsequent sizes of that aspect ration.
+    Result = MakeFrame(Environment, Sizes[0][0], Sizes[0][1], App.Constants.Boolean.true)
+    if (Result):
+        Results.append(Result)
+        for Size in Sizes[1:]:
+            Results.append(MakeFrame(Environment, Size[0], Size[1], App.Constants.Boolean.false))
+
+
+def MakeFrame(Environment, Width, Height, ShowDialog):
+    # New File
+    App.Do(Environment, 'NewFile', {
+            'Width': Width,
+            'Height': Height,
+            'ColorDepth': App.Constants.Colordepth.SixteenMillionColor,
+            'DimensionUnits': App.Constants.DimensionType.Pixels,
+            'ResolutionUnits': App.Constants.ResolutionUnits.PixelsPerCM,
+            'Resolution': 100,
+            'Transparent': App.Constants.Boolean.true,
+            'VectorBackground': App.Constants.Boolean.false,
+            'GeneralSettings': SilentSettings
+            })
+
+    # SelectDocument
+    App.Do(Environment, 'SelectDocument', {
+            'SelectedImage': 0,
+            'Strict': App.Constants.Boolean.false
+            })
+
+    # SelectAll
+    App.Do(Environment, 'SelectAll', {
+            })
+
+    # Set up params for PictureFrame.
+    # If showing dialog, then initialize settings.
+    # Otherwise use last settings and hide.
+    if (ShowDialog == App.Constants.Boolean.true):
+        PictureFrameParams = {
+                'TransparentBackground': App.Constants.Boolean.true,
+                'OutsideFrame': App.Constants.Boolean.true,
+                'Rotate': App.Constants.Boolean.false,
+                'Mirror': App.Constants.Boolean.false,
+                'Flip': App.Constants.Boolean.false
+                }
+    else:
+        PictureFrameParams = {
+                'GeneralSettings': SilentSettings
+                }
+
+    try:
+        # PictureFrame
+        App.Do(Environment, 'PictureFrame', PictureFrameParams)
+    except:
+        # If user Cancels PictureFrame dialog and chooses "No" to continue,
+        # then we get exception and handle it here by skipping this frame size
+        App.Do(Environment, 'FileClose', {
+                'GeneralSettings': SilentSettings
+                })
+        return None
+
+    # GetCommandInfo
+    Info = App.Do(Environment, 'GetCommandInfo', {
+            'TargetCmd': 'PictureFrame',
+            'ParamInfo': App.Constants.ParamInfo.LastUsed
+            })
+
+    # Get command parameters - see sample AddBordersAndSelect.PspScript
+    PictureFrameParams = Info[Info['Library'] + '\\' + Info['Name']]
+    PictureFrameName = PictureFrameParams['FileName']
+
+    # Final size of skin after frame applied
+    SkinSize = (App.ActiveDocument.Width, App.ActiveDocument.Height)
+
+    # SelectLayer
+    App.Do(Environment, 'SelectLayer', {
+            'Path': (0, -2, [], App.Constants.Boolean.false)
+            })
+
+    # ClearSelection
+    App.Do(Environment, 'ClearSelection', {
+            })
+
+    # GetRasterSelectionRect
+    Result = App.Do(Environment, 'GetRasterSelectionRect', {
+            })
+    # Selection bounds is the stage
+    StageRect = Result['Rect']
+
+    # PNG Optimizer
+    Dir = SkinDirectory + '\\' + FrameDirName(PictureFrameName)
+    try: os.makedirs(Dir)
+    except: pass
+    FileName = '%dx%d.png' % (Width, Height)
+    App.Do(Environment, 'PNGOptimizer', {
+            'TypeOfTransparency': App.Constants.TransparencyType.AlphaTransparency,
+            'TypeOfImage': App.Constants.ImageType.TrueColor,
+            'FileSubFormat': App.Constants.SubFormat.NonInterlaced,
+            'FileName': Dir + '\\' + FileName,
+            'Gamma': 45455,
+            'GeneralSettings': SilentSettings
+            })
+
+    # FileClose
+    App.Do(Environment, 'FileClose', {
+            'GeneralSettings': SilentSettings
+            })
+
+    return {
+            'Name': PictureFrameName,
+            'SkinSize': SkinSize,
+            'StageRect': StageRect,
+            'FileName': FileName
+            }
+
+
+def FrameDirName(Name):
+    return Name.title().replace(' ','') + "Frame"
+
+
+# Returns (FontHeight, CaptionRect) tuple
+def ComputeCaptionRect(SkinSize, StageRect):
+    FontHeight = int(0.07 * StageRect[2])
+    if (FontHeight < 15): FontHeight = 15
+    CapHeight = FontHeight + 5
+    AvailHeight = SkinSize[1] - (StageRect[0][1] + StageRect[2])
+
+    # If no room below photo, then overlay the caption on the bottom of the photo
+    if (AvailHeight < CapHeight):
+        return (FontHeight, ((StageRect[0][0], StageRect[0][1] + StageRect[2] - CapHeight), StageRect[1], CapHeight))
+    else:
+        return (FontHeight, ((StageRect[0][0], StageRect[0][1] + StageRect[2]), StageRect[1], AvailHeight))
+
+
+def WriteManifest(Results, Thumbnail):
+    FrameName = Thumbnail['Name']
+
+    Skins = 'skins='
+    Comma = ''
+    for Result in Results:
+        if not Result: continue
+        StageRect = Result['StageRect']
+        Skins += Comma + 's%dx%d' % StageRect[1:]
+        Comma = ','
+
+    ManifestFile = file(SkinDirectory + '\\' + FrameDirName(FrameName) + '\\skin.txt', "w")
+
+    ManifestFile.write(u'# $Rev: \u0024\n\n')
+    ManifestFile.write('# Frame "%s"\n\n' % FrameName)
+    ManifestFile.write('name=Frame %s\n' % FrameName)
+    ManifestFile.write('description=<body bgcolor="#dddddd"><img src="%s"><br>%s\n' % (Thumbnail['FileName'], FrameName))
+    ManifestFile.write(Skins + '\n\n')
+
+    for Result in Results:
+        if not Result: continue
+        StageRect = Result['StageRect']
+        SkinSize = Result['SkinSize']
+        FontHeight, CaptionRect = ComputeCaptionRect(SkinSize, StageRect)
+        SkinName = 's%dx%d' % StageRect[1:]
+        ManifestFile.write(SkinName + '.size=%d,%d' % SkinSize + '\n')
+        ManifestFile.write(SkinName + '.stage=%d,%d,%d,%d' % (StageRect[0][0], StageRect[0][1], StageRect[1], StageRect[2]) + '\n')
+        ManifestFile.write(SkinName + '.externals=../shared/BVerdana.fft\n')
+        ManifestFile.write(SkinName + '.foregrounds=frame,caption\n')
+        ManifestFile.write(SkinName + '.foreground.frame=%s\n' % Result['FileName'])
+        ManifestFile.write(SkinName + '.foreground.caption=../shared/caption-crossfade.swt\n')
+        ManifestFile.write(SkinName + '.foreground.caption.region=%d,%d\n' % CaptionRect[0])
+        ManifestFile.write(SkinName + '.params=spTitleWidth=%d&spTitleHeight=%d&spFontHeight=%d&spTextAlign=center&spFontName=Verdana&spTextColor=#FFFFFF&spTextShadowColor=#000000&spTextShadowOffset=0.5&spFadeDuration=2\n' % (CaptionRect[1], CaptionRect[2], FontHeight))
+        ManifestFile.write(SkinName + '.eventHandler=foreground/caption\n')
+        ManifestFile.write('\n')
+
+
+    ManifestFile.close()

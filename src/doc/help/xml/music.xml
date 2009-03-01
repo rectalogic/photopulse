@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- ***** BEGIN LICENSE BLOCK *****
+   - Version: MPL 1.1
+   -
+   - The contents of this file are subject to the Mozilla Public License Version
+   - 1.1 (the "License"); you may not use this file except in compliance with
+   - the License. You may obtain a copy of the License at
+   - http://www.mozilla.org/MPL/
+   -
+   - Software distributed under the License is distributed on an "AS IS" basis,
+   - WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+   - for the specific language governing rights and limitations under the
+   - License.
+   -
+   - The Original Code is Photica Photopulse.
+   -
+   - The Initial Developer of the Original Code is
+   - Photica Inc.
+   - Portions created by the Initial Developer are Copyright (C) 2003
+   - the Initial Developer. All Rights Reserved.
+   -
+   - Contributor(s):
+   - Andrew Wason, Mike Mills
+   - info@photica.com
+   -
+   - ***** END LICENSE BLOCK ***** -->
+
+<section id="music">
+	<title>Music</title>
+	<para>
+		You can add a single MP3 song or a sequence of songs (playlist) to your show.
+		The music soundtrack plays as your photos are displayed during the show.
+		If your show has a soundtrack, you can disable it using the <guilabel>Settings Tab</guilabel>,
+ 		see <xref linkend="settings.mp3"/> for more information.
+	</para>
+	<section>
+		<title>Adding Music</title>
+		<indexterm><primary>music</primary><secondary>adding</secondary></indexterm>
+		<indexterm><primary>Music... button</primary></indexterm>
+		<para>
+			The <guibutton>Music...</guibutton> button and the
+			<guimenu>File</guimenu>|<guimenuitem>Music...</guimenuitem>
+			menu item both display the MP3 file chooser, allowing you to
+			select MP3 music files to use as a soundtrack for your show.
+		</para>
+		<para>
+			The MP3 file chooser has a <guilabel>Listen</guilabel> hyperlink
+			which will play the currently selected MP3 file using your
+			systems media player.
+			This can be used to preview music files as you select one.
+		</para>
+		<para>
+			You can only select a single file to use as the soundtrack.
+			Each time you select a file using the MP3 file chooser,
+			it replaces the current file with the new one.
+			You can see the currently selected MP3 file in the tooltip displayed
+			by hovering your mouse over the <guibutton>Music...</guibutton> button
+			at the bottom of the main <application>PhotoPulse</application> window.
+		</para>
+	</section>
+	<section id="music.playlist">
+		<title>MP3 Playlist Editor</title>
+		<indexterm><primary>music</primary><secondary>playlist</secondary></indexterm>
+		<para>
+			In addition to MP3 files, you can also choose MP3 playlist (M3U) files.
+			An MP3 playlist is an ordered list of references to other MP3 files
+			to play in sequence.
+			This allows you to use multiple MP3 files for your soundtrack by
+			building a playlist containing the MP3 files you want,
+			and choosing the M3U playlist as the single music file for your show.
+		</para>
+		<para>
+			You can create your own M3U file using the MP3 Playlist Editor.
+			Choose <guimenuitem>Build MP3 Playlist...</guimenuitem> from the <guimenu>Tools</guimenu> menu
+			to display the editor.
+			If your current music file is an M3U file, then the editor will load it
+			and allow you to edit the contents.
+			Otherwise the editor will allow you to create a playlist from scratch.
+			<mediaobject>
+				<caption><para>MP3 Playlist Editor</para></caption>
+				<imageobject><imagedata fileref="images/mp3Playlist.png"/></imageobject>
+			</mediaobject>
+			<variablelist>
+				<varlistentry><term>MP3 File List</term>
+					<listitem>
+						<para>
+							Displays the MP3 files currently in your playlist.
+							The order the files are displayed is the order they will play back.
+							Click on a filename to select it,
+							Ctrl-Click and Shift-Click to select multiple files at one time.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Add...</term>
+					<listitem>
+						<para>
+							Displays the MP3 file chooser allowing you to choose MP3 files to add
+							to the playlist.
+							You can select multiple files at once in the file chooser by using
+							Ctrl-Click and Shift-Click.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Remove</term>
+					<listitem>
+						<para>
+							Removes the selected MP3 files from your playlist.
+							This does not delete the files from your disk,
+							it just excludes them from the playlist.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Move Up</term>
+					<listitem>
+						<para>
+							Moves the selected MP3 files up in the playlist.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Move Down</term>
+					<listitem>
+						<para>
+							Moves the selected MP3 files down in the playlist.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Load...</term>
+					<listitem>
+						<para>
+							Displays an M3U file chooser, allowing you to load a new M3U playlist to edit.
+							The current playlist will be replaced by the new one loaded.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Save...</term>
+					<listitem>
+						<para>
+							Displays an M3U file chooser, allowing you to save the current playlist to an M3U file.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>OK</term>
+					<listitem>
+						<para>
+							Dismisses the playlist editor and makes the new M3U playlist file
+							the new music soundtrack for your show.
+							If you have not yet saved your playlist as an M3U file,
+							you will first be prompted to save it.
+						</para>
+					</listitem>
+				</varlistentry>
+			</variablelist>
+		</para>
+	</section>
+</section>

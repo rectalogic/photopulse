@@ -1,0 +1,6 @@
+# $Rev: 555 $
+description=WebNow FTP Upload
+signupURL=http://www.webnow.com
+hostname=videos.webnow.com
+viewURLTemplate=http://www.webnow.com/${userName}/videos/${showName}
+default=true

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- ***** BEGIN LICENSE BLOCK *****
+   - Version: MPL 1.1
+   -
+   - The contents of this file are subject to the Mozilla Public License Version
+   - 1.1 (the "License"); you may not use this file except in compliance with
+   - the License. You may obtain a copy of the License at
+   - http://www.mozilla.org/MPL/
+   -
+   - Software distributed under the License is distributed on an "AS IS" basis,
+   - WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+   - for the specific language governing rights and limitations under the
+   - License.
+   -
+   - The Original Code is Photica Photopulse.
+   -
+   - The Initial Developer of the Original Code is
+   - Photica Inc.
+   - Portions created by the Initial Developer are Copyright (C) 2003
+   - the Initial Developer. All Rights Reserved.
+   -
+   - Contributor(s):
+   - Andrew Wason, Mike Mills
+   - info@photica.com
+   -
+   - ***** END LICENSE BLOCK ***** -->
+
+<section id="license">
+	<title>License</title>
+	<indexterm><primary>license</primary></indexterm>
+	<para>
+		Until you purchase a license for <application>PhotoPulse</application>, it will operate in trial mode.
+		When in trial mode, the shows you create are limited to five unique photos
+		and contain a logo reminding you this show was created in trial mode.
+		Also <application>PhotoPulse</application> displays a reminder dialog each time you start it.
+	</para>
+	<para>
+		When you purchase a license, you must enter it into <application>PhotoPulse</application> to enable full functionality.
+		Choose <guimenuitem>Enter License Key...</guimenuitem> from the <guimenu>Help</guimenu>
+		to display the <guilabel>License Dialog</guilabel>.
+		<mediaobject>
+			<caption><para>License Dialog</para></caption>
+			<imageobject><imagedata fileref="images/licenseDialog.png"/></imageobject>
+		</mediaobject>
+		<variablelist>
+			<varlistentry><term>Key<indexterm><primary>license key</primary></indexterm></term>
+				<listitem>
+					<para>
+						Enter your full license key in this text area.
+						You can right click on this are to display a menu allowing you
+						to paste the key from the clipboard if you copied it from another application
+						(e.g. email).
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>
+ 					Paste
+					<inlinemediaobject><imageobject><imagedata fileref="images/licensePaste.png"/></imageobject></inlinemediaobject>
+				</term>
+				<listitem>
+					<para>
+						Click this toolbutton to paste from the clipboard.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>
+ 					Clear
+					<inlinemediaobject><imageobject><imagedata fileref="images/licenseClear.png"/></imageobject></inlinemediaobject>
+				</term>
+				<listitem>
+					<para>
+						Click this toolbutton to clear the license text area if you made a mistake.
+					</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
+	</para>
+</section>

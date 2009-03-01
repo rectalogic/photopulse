@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- ***** BEGIN LICENSE BLOCK *****
+   - Version: MPL 1.1
+   -
+   - The contents of this file are subject to the Mozilla Public License Version
+   - 1.1 (the "License"); you may not use this file except in compliance with
+   - the License. You may obtain a copy of the License at
+   - http://www.mozilla.org/MPL/
+   -
+   - Software distributed under the License is distributed on an "AS IS" basis,
+   - WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+   - for the specific language governing rights and limitations under the
+   - License.
+   -
+   - The Original Code is Photica Photopulse.
+   -
+   - The Initial Developer of the Original Code is
+   - Photica Inc.
+   - Portions created by the Initial Developer are Copyright (C) 2003
+   - the Initial Developer. All Rights Reserved.
+   -
+   - Contributor(s):
+   - Andrew Wason, Mike Mills
+   - info@photica.com
+   -
+   - ***** END LICENSE BLOCK ***** -->
+
+<section>
+	<title>Settings Tab</title>
+	<para>
+		<mediaobject>
+			<caption><para>Settings Tab</para></caption>
+			<imageobject><imagedata fileref="images/settingsTabWizard.png"/></imageobject>
+		</mediaobject>
+		<mediaobject userlevel="expert">
+			<caption><para>Settings Tab in Expert Mode</para></caption>
+			<imageobject><imagedata fileref="images/settingsTabExpert.png"/></imageobject>
+		</mediaobject>
+
+		<variablelist>
+			<varlistentry id="settings.theme"><term>Show theme<indexterm><primary>settings</primary><secondary>theme</secondary></indexterm></term>
+				<listitem>
+					<para>
+						Selects the size (width X height) and style of the show created.
+						<guilabel>Large</guilabel> selects a larger format show (approximately 640x480),
+						<guilabel>Small</guilabel> selects a smaller show (approximately 320x240).
+						The specific show size and orientation created is chosen to most closely
+ 						match the orientation and aspect ratio of the photos in your show.
+					</para>
+					<para>
+						<guilabel>Custom...</guilabel> displays the <guilabel>Thene Chooser</guilabel>.
+						This allows you to specify your own custom show size and also to choose
+						a theme (background image, framed border, text caption display etc.)
+						to apply to your show.
+						See <xref linkend="themes"/> for more information.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry><term>Background color<indexterm><primary>settings</primary><secondary>background color</secondary></indexterm></term>
+				<listitem>
+					<para>
+						The color chip in this button shows the current show background color.
+						Pressing the button displays the <guilabel>Background Color Chooser</guilabel>,
+						allowing you to select a new color.
+						The background color is used to color the background regions of the show.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry><term>End of show<indexterm><primary>settings</primary><secondary>show ending</secondary></indexterm></term>
+				<listitem>
+					<para>
+						Selects the desired behavior when the end of the show is reached.
+						<variablelist>
+							<varlistentry><term><guilabel>Loop</guilabel></term>
+								<listitem>
+									<para>
+										When the end of the show is reached, it will loop back to the beginning,
+										repeating the show.
+									</para>
+								</listitem>
+							</varlistentry>
+							<varlistentry><term><guilabel>Pause</guilabel></term>
+								<listitem>
+									<para>
+										When the end of the show is reached, the show will pause while
+										displaying the last photo in the show.
+										The ending transition on the last photo in the show will be ignored
+ 										- the photo will be displayed with no transition and the show will be paused.
+										The Play control will be displayed in corner of the show.
+										The viewer can press the Play control to cause the show to loop back
+										to the beginning and repeat itself.
+									</para>
+								</listitem>
+							</varlistentry>
+							<varlistentry><term><guilabel>Stop</guilabel></term>
+								<listitem>
+									<para>
+										When the end of the show is reached, the show will stop after
+										the last photos ending transition.
+										No photos will be visible at that point, only the background color
+										and any Theme that was applied.
+									</para>
+								</listitem>
+							</varlistentry>
+							<varlistentry><term><guilabel>Close window</guilabel></term>
+								<listitem>
+									<para>
+										When the end of the show is reached, the show will trigger the
+										web browser window it is displayed in to close.
+										This is only applicable to web page (HTML) format shows.
+									</para>
+								</listitem>
+							</varlistentry>
+						</variablelist>
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry id="settings.mp3"><term>MP3<indexterm><primary>settings</primary><secondary>MP3 mode</secondary></indexterm></term>
+				<listitem>
+					<para>
+						Selects how the MP3 soundtrack is incorporated into the show.
+						<variablelist>
+							<varlistentry><term><guilabel>No sound</guilabel></term>
+								<listitem>
+									<para>
+										Do not include the MP3 in the show, the show will be silent.
+									</para>
+								</listitem>
+							</varlistentry>
+							<varlistentry><term><guilabel>Internal sound</guilabel></term>
+								<listitem>
+									<para>
+										For Flash show types, incorporates the MP3 into the show itself, not as an external asset.
+										This is the recommended mode.
+									</para>
+								</listitem>
+							</varlistentry>
+							<varlistentry><term><guilabel>External sound</guilabel></term>
+								<listitem>
+									<para>
+										For Flash show types, some older versions of the Flash player
+										may have stability problems when the MP3 is <guilabel>Internal sound</guilabel>.
+										If viewers are having problems playing the sound you may wish to try
+										selecting <guilabel>External sound</guilabel>.
+										This will create the MP3 as an external Flash file that the show will load.
+									</para>
+								</listitem>
+							</varlistentry>
+						</variablelist>
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry id="settings.framerate"><term>Frame rate<indexterm><primary>settings</primary><secondary>frame rate</secondary></indexterm></term>
+				<listitem>
+					<para>
+						Selects the playback frame rate of the show in frames per second.
+						Higher frame rates typically play back smoother than lower rates.
+						However if the frame rate is too high and the computer playing the show is not
+						powerful enough, the play back may be worse (jerky) at higher rates.
+						Typically a frame rate of 12 is recommended for web (HTML) show types
+						and 30 is recommended for video show types that are going to be burned to DVD.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry id="settings.speed"><term>Show speed<indexterm><primary>settings</primary><secondary>speed</secondary></indexterm></term>
+				<listitem>
+					<para userlevel="expert">
+						If you are not in Expert Mode, then show speed sliders will be displayed.
+						If you are in Expert Mode, then duration spinners will be displayed instead
+						(see <xref linkend="settings.durations"/>).
+					</para>
+					<para>
+						In between the two sliders is a label displaying the total number of photos in the show.
+						If you have an MP3 soundtrack selected, then another label will be visible
+						displaying how many photos will be displayed when the show plays.
+						This number may be different than the total because <application>PhotoPulse</application> will automatically
+						repeat photos in the show in order to make the show duration match the MP3 duration
+						so that photos are displayed the entire time the music is playing.
+					</para>
+					<para>
+						As you adjust the sliders, the number of photos displayed may change.
+						e.g. faster settings means each photo is displayed for less time,
+						so more photos must be displayed in total to match the MP3 duration.
+						<variablelist>
+							<varlistentry><term><guilabel>Transition speed</guilabel></term>
+								<listitem>
+									<para>
+										Determines how long photo transitions will be displayed.
+										Faster settings means transition time between photos will happen faster.
+									</para>
+								</listitem>
+							</varlistentry>
+							<varlistentry><term><guilabel>Effect speed</guilabel></term>
+								<listitem>
+									<para>
+										Determines how long photo effects will be displayed.
+										This is the time the photo is displayed from after the beginning
+										transition and before the ending transition
+										(i.e. display time not including transition time).
+									</para>
+								</listitem>
+							</varlistentry>
+						</variablelist>
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry id="settings.durations" userlevel="expert"><term>Durations<indexterm><primary>settings</primary><secondary>durations</secondary></indexterm></term>
+				<listitem>
+					<para>
+						If you are in Expert Mode, then duration spinners will be displayed.
+						If you are not in Expert Mode, then show speed sliders will be displayed instead
+						(see <xref linkend="settings.speed"/>).
+					</para>
+					<para>
+						These controls allow you to set the default durations for transitions and effects
+						for new photos that are added to the show.
+						The durations can be fractional (e.g. 1.25 seconds).
+						<variablelist>
+							<varlistentry><term><guilabel>Default transition duration</guilabel></term>
+								<listitem>
+									<para>
+										Set the default duration in seconds for beginning and ending transitions.
+									</para>
+								</listitem>
+							</varlistentry>
+							<varlistentry><term><guilabel>Default effect duration</guilabel></term>
+								<listitem>
+									<para>
+										Set the default duration in seconds for effects.
+									</para>
+								</listitem>
+							</varlistentry>
+						</variablelist>
+					</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
+	</para>
+
+	&themes.xml;
+</section>
+

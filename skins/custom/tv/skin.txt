@@ -1,0 +1,28 @@
+# $Rev: 538 $
+
+name=Television with captions
+description=<body bgcolor="#dddddd"><img src="thumbnail.png"><br>Old fashioned TV set playing photos, with captions below.
+
+skins=small43,small32
+
+small43.size=589,553
+small43.stage=48,56,400,300
+small43.foregrounds=tv
+small43.foreground.tv=tv.swf
+small43.foreground.tv.region=0,0
+small43.backgrounds=static
+small43.background.static=static.gif
+small43.background.static.region=48,56,400,300
+small43.background.static.tile=true
+small43.eventHandler=foreground/tv
+
+small32.size=589,553
+small32.stage=23,56,450,300
+small32.foregrounds=tv
+small32.foreground.tv=tv.swf
+small32.foreground.tv.region=0,0
+small32.backgrounds=static
+small32.background.static=static.gif
+small32.background.static.region=23,56,450,300
+small32.background.static.tile=true
+small32.eventHandler=foreground/tv

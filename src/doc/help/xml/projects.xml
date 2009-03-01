@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- ***** BEGIN LICENSE BLOCK *****
+   - Version: MPL 1.1
+   -
+   - The contents of this file are subject to the Mozilla Public License Version
+   - 1.1 (the "License"); you may not use this file except in compliance with
+   - the License. You may obtain a copy of the License at
+   - http://www.mozilla.org/MPL/
+   -
+   - Software distributed under the License is distributed on an "AS IS" basis,
+   - WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+   - for the specific language governing rights and limitations under the
+   - License.
+   -
+   - The Original Code is Photica Photopulse.
+   -
+   - The Initial Developer of the Original Code is
+   - Photica Inc.
+   - Portions created by the Initial Developer are Copyright (C) 2003
+   - the Initial Developer. All Rights Reserved.
+   -
+   - Contributor(s):
+   - Andrew Wason, Mike Mills
+   - info@photica.com
+   -
+   - ***** END LICENSE BLOCK ***** -->
+
+<section userlevel="expert" id="projects">
+	<title>Projects</title>
+	<indexterm><primary>projects</primary></indexterm>
+	<para>
+		The photos, music soundtrack, transition and effect selections and other settings
+ 		that make up a show can be saved in a <application>PhotoPulse</application> project file.
+		You can reopen the project later and continue working on it,
+ 		adding a few more photos or changing the music and other settings.
+		If you open and modify a project, you can then save your changes replacing
+		the existing project file, or save as a new project file without changing the original.
+		See <xref linkend="menu.File"/> for more information on project related menu items.
+	</para>
+	<para>
+		The project file does not actually store your photos and MP3,
+		it references the original photo and MP3 files on your disk - only the file names are stored in the project.
+		If you move the photos or MP3,
+ 		then when you open the project file later it will not be able to locate those files.
+		If you load photos from a CDROM directly into a <application>PhotoPulse</application> show, then when you reopen that project
+		you will need to have the CDROM inserted.
+		Because of this, it is usually better to copy the photos from the CDROM onto your hard disk
+		and load them into <application>PhotoPulse</application> from there.
+	</para>
+	<para>
+		A good way to organize the files for a <application>PhotoPulse</application> project is like this:
+<programlisting>
++ Birthday Show/
+  |
+  + Birthday Show.ppp
+  + photos/
+    |---photo1.jpg
+    |---photo2.jpg
+    |---[...]
+    |---photoN.jpg
+  + music/
+    |---song.mp3
+</programlisting>
+		This way the project file and the photos and MP3 it references are all contained within the
+		same folder (<filename>Birthday Show</filename>).
+		This folder can then be renamed or moved without breaking the link between the project
+		file and the photos it references.
+	</para>
+</section>

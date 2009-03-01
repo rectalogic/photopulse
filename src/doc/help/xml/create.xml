@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- ***** BEGIN LICENSE BLOCK *****
+   - Version: MPL 1.1
+   -
+   - The contents of this file are subject to the Mozilla Public License Version
+   - 1.1 (the "License"); you may not use this file except in compliance with
+   - the License. You may obtain a copy of the License at
+   - http://www.mozilla.org/MPL/
+   -
+   - Software distributed under the License is distributed on an "AS IS" basis,
+   - WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+   - for the specific language governing rights and limitations under the
+   - License.
+   -
+   - The Original Code is Photica Photopulse.
+   -
+   - The Initial Developer of the Original Code is
+   - Photica Inc.
+   - Portions created by the Initial Developer are Copyright (C) 2003
+   - the Initial Developer. All Rights Reserved.
+   -
+   - Contributor(s):
+   - Andrew Wason, Mike Mills
+   - info@photica.com
+   -
+   - ***** END LICENSE BLOCK ***** -->
+
+<section id="create">
+	<title>Create</title>
+	<indexterm><primary>Create... button</primary></indexterm>
+	<para>
+		The <guibutton>Create...</guibutton> button and the
+		<guimenu>File</guimenu>|<guimenuitem>Create...</guimenuitem>
+		menu item both display the Create Show file chooser, allowing you to
+		create your show.
+		A <application>PhotoPulse</application> show can be created in a variety of formats,
+		each suitable for a different purpose.
+	</para>
+	<section>
+		<title>Choosing the Show Type</title>
+		<para>
+			<mediaobject>
+				<caption><para>Create Show Chooser</para></caption>
+				<imageobject><imagedata fileref="images/createChooser.png"/></imageobject>
+			</mediaobject>
+		</para>
+		<para>
+			<variablelist>
+				<varlistentry><term>File List</term>
+					<listitem>
+						<para>
+							Navigate to the folder you want to create your show in.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>File Name</term>
+					<listitem>
+						<para>
+							Enter the name to create the show as.
+							You do not have to enter a file suffix,
+							one will be added automatically based on the type of
+							show being created.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry id="create.simpleShowType"><term>Show type<indexterm><primary>show types</primary></indexterm></term>
+					<listitem>
+						<para>
+							These checkboxes provide a simple way to select from
+							the most common types of shows to create.
+							Selecting one of these changes the
+							<guilabel>Files of Type</guilabel> selection to the proper show type.
+							See <xref linkend="create.showType"/>
+							for descriptions of the different show types.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry id="create.highQuality"><term>High quality<indexterm><primary>quality mode</primary></indexterm></term>
+					<listitem>
+						<para>
+							Turning on high quality mode will help make pan and zoom effects
+							smoother and clearer.
+							However, it will make the show file size much larger,
+							and the show will take longer to create.
+							Normally, high quality mode would only be used for video show types.
+							Sometimes you may want to turn it off even for video shows,
+							to speed up show creation time.
+							The <guilabel>High quality</guilabel> checkbox is automatically
+							set properly based on the show type you select,
+							so normally you will not need to change it.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry id="create.showType"><term>Files of Type</term>
+					<listitem>
+						<para>
+							This dropdown menu allows you to select the type of show to create.
+							<variablelist>
+								<varlistentry><term><guimenuitem>Web page (*.htm, *.html)</guimenuitem></term>
+									<listitem>
+										<para>
+											Creates an HTML web page that contains a Flash show.
+											The <guilabel>File Name</guilabel> that you enter will be
+											the name of an HTML file that contains a thumbnail of
+											the first photo in your show.
+											The user can click this thumbnail to popup another web browser
+											window that is the proper size to play your show.
+											The popup HTML page and the Flash file and other data will
+											be created in a separate folder that is named after the
+											web page file name you enter.
+											For example, if you enter <filename>Graduation.htm</filename>
+											in the <guilabel>File Name</guilabel> field, then the web page
+											<filename>Graduation.htm</filename> will be created and also
+											a folder named <filename>Graduation_files</filename> which
+											will contain the Flash file, thumbnail and popup web page.
+										</para>
+									</listitem>
+								</varlistentry>
+								<varlistentry><term><guimenuitem>Windows Media Video file (*.wmv)</guimenuitem><indexterm><primary>video</primary></indexterm></term>
+									<listitem>
+										<para>
+											Creates a Windows Media video file.
+											The video file can be quite large,
+											but this is the recommended format for burning a video DVD.
+											You must have Microsoft Windows Media 9 or higher installed
+ 											on your system to create this show type.
+										</para>
+									</listitem>
+								</varlistentry>
+								<varlistentry><term><guimenuitem>Windows application (*.exe)</guimenuitem><indexterm><primary>.exe</primary></indexterm><indexterm><primary>EXE</primary></indexterm></term>
+									<listitem>
+										<para>
+											Creates a Windows application which a user can run to play
+											back your show. The application contains an embedded Flash file
+											of your show, so the application itself is all that is needed to
+											play back the show.
+										</para>
+									</listitem>
+								</varlistentry>
+								<varlistentry><term><guimenuitem>Flash file (*.swf)</guimenuitem></term>
+									<listitem>
+										<para>
+											Creates a raw Flash file.
+											This is for advanced users who want to incorporate a show into
+											a Flash presentation using the Macromedia Flash authoring tool,
+											or who are building their own HTML page to host the Flash file.
+										</para>
+									</listitem>
+								</varlistentry>
+							</variablelist>
+						</para>
+					</listitem>
+				</varlistentry>
+			</variablelist>
+		</para>
+	</section>
+
+	<!--XXX add a section about the progress dialog and cancelling? -->
+
+	<section id="create.tools">
+		<title>Invoking Show Tools</title>
+		<para>
+			After creating your show, <application>PhotoPulse</application> will display the <guilabel>Show Tools</guilabel> dialog.
+			This dialog presents a set of tools or operations that apply to the type of show you created.
+			You can select a tool from the list and click <guibutton>OK</guibutton> to invoke that tool.
+			If you do not wish to use any of the tools presented, click <guibutton>Cancel</guibutton>.
+			<mediaobject>
+				<caption><para>Show Tools Dialog</para></caption>
+				<imageobject><imagedata fileref="images/toolDialog.png"/></imageobject>
+			</mediaobject>
+		</para>
+	</section>
+</section>

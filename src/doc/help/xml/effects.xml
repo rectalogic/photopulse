@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- ***** BEGIN LICENSE BLOCK *****
+   - Version: MPL 1.1
+   -
+   - The contents of this file are subject to the Mozilla Public License Version
+   - 1.1 (the "License"); you may not use this file except in compliance with
+   - the License. You may obtain a copy of the License at
+   - http://www.mozilla.org/MPL/
+   -
+   - Software distributed under the License is distributed on an "AS IS" basis,
+   - WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+   - for the specific language governing rights and limitations under the
+   - License.
+   -
+   - The Original Code is Photica Photopulse.
+   -
+   - The Initial Developer of the Original Code is
+   - Photica Inc.
+   - Portions created by the Initial Developer are Copyright (C) 2003
+   - the Initial Developer. All Rights Reserved.
+   -
+   - Contributor(s):
+   - Andrew Wason, Mike Mills
+   - info@photica.com
+   -
+   - ***** END LICENSE BLOCK ***** -->
+
+<section id="effects">
+	<title>Transitions and Effects</title>
+	<indexterm><primary>transitions</primary></indexterm>
+	<indexterm><primary>effects</primary></indexterm>
+	<para>
+		The photos in a <application>PhotoPulse</application> show are displayed using a series of transitions and effects.
+		A <guilabel>Transition</guilabel> defines how one photo transitions out from the
+ 		previous photo and into the next photo in the show.
+		The transitions for two adjacent photos will overlap in time
+ 		(play simultaneously during the transition period).
+		An <guilabel>Effect</guilabel> defines how an individual photo is displayed.
+		Each photo has a beginning transition, an effect and an ending transition.
+	</para>
+	<para>
+		For example, photo A has a falling leaves effect and a fade out ending transition.
+		Photo B has a falling snowflake effect and a fade in beginning transition.
+		In this case, photo A is displayed with the falling leaves effect until the transition period.
+		At that time it begins to fade out while at the same time photo B
+		begins to fade in while displaying the falling snowflake effect.
+		When the transition period is over, photo A has faded to invisibility and photo B
+		is now fully opaque and is continuing to display its falling snowflake effect.
+	</para>
+	<para>
+		The <guilabel>Transitions In Tab</guilabel>,
+		<guilabel>Effects Tab</guilabel> and <guilabel>Transitions Out Tab</guilabel>
+		can be used to select the set of transitions and effects that will be chosen when creating a show.
+		See <xref linkend="effects.tabs"/> for more information.
+	</para>
+	<para>
+		You can preview the different transitions and effects
+		<!-- One of these will be used, depending on website or help build.
+			For the website, the previews are inserted inline below via the build process. -->
+		<phrase condition="help"><ulink url="http://www.photopulse.com/help/UsersGuide.html#previews">here</ulink>.</phrase>
+		<phrase condition="website"><ulink url="#previews">here</ulink>.</phrase>
+	</para>
+	<section id="effects.tabs">
+		<title>Transitions and Effects Tabs</title>
+		<para>
+			The <guilabel>Transitions and Effects Tabs</guilabel> contain scrolling
+			lists of checkboxes, enabling you to choose your preferred transitions
+			and effects.
+			The transitions and effects that are checked are the ones that will
+			be used when automatically applying transitions and effects.
+		</para>
+		<para>
+			<variablelist>
+				<varlistentry id="effects.TransitionsInTab"><term>Transitions In Tab</term>
+					<listitem>
+						<para>
+							Check the checkboxes of your preferred beginning transitions
+							(the transition that plays as a new photo transitions onscreen).
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry id="effects.EffectsTab"><term>Effects Tab</term>
+					<listitem>
+						<para>
+							Check the checkboxes of your preferred effects
+							(the effect plays the entire time the photo is onscreen).
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry id="effects.TransitionsOutTab"><term>Transitions Out Tab</term>
+					<listitem>
+						<para>
+							Check the checkboxes of your preferred ending transitions
+							(the transition that plays as an existing photo transitions offscreen).
+						</para>
+					</listitem>
+				</varlistentry>
+			</variablelist>
+		</para>
+	</section>
+</section>

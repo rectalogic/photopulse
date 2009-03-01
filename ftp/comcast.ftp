@@ -1,0 +1,8 @@
+# $Rev: 555 $
+# http://www.comcast.net/memberservices/onlinestorage/index.jsp
+description=Comcast FTP Upload
+hostname=upload.comcast.net
+directory=photopulse
+viewURLTemplate=http://home.comcast.net/~${userName}/photopulse/${showName}${showExt}
+manageURLTemplate=ftp://${userName}@upload.comcast.net/
+signupURL=http://www.comcast.net/

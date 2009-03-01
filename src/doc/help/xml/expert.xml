@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- ***** BEGIN LICENSE BLOCK *****
+   - Version: MPL 1.1
+   -
+   - The contents of this file are subject to the Mozilla Public License Version
+   - 1.1 (the "License"); you may not use this file except in compliance with
+   - the License. You may obtain a copy of the License at
+   - http://www.mozilla.org/MPL/
+   -
+   - Software distributed under the License is distributed on an "AS IS" basis,
+   - WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+   - for the specific language governing rights and limitations under the
+   - License.
+   -
+   - The Original Code is Photica Photopulse.
+   -
+   - The Initial Developer of the Original Code is
+   - Photica Inc.
+   - Portions created by the Initial Developer are Copyright (C) 2003
+   - the Initial Developer. All Rights Reserved.
+   -
+   - Contributor(s):
+   - Andrew Wason, Mike Mills
+   - info@photica.com
+   -
+   - ***** END LICENSE BLOCK ***** -->
+
+<section userlevel="expert" id="expert">
+	<title>Expert Mode</title>
+	<indexterm><primary>Expert Mode</primary></indexterm>
+	<para>
+		Expert Mode gives you more control over the show that is created.
+		Instead of <application>PhotoPulse</application> randomly picking transitions and effects and
+		setting the duration of each photo, Expert Mode allows you to fine tune these choices.
+		To turn on Expert Mode, check the <guimenuitem>Expert Mode</guimenuitem>
+		menu item checkbox in the <guimenu>View</guimenu> menu.
+		When you enter Expert Mode, an Expert Panel
+ 		appears on the right in the <guilabel>Photos Tab</guilabel>.
+		This panel can be resized by dragging the separator bar along its left edge.
+	</para>
+	<para>
+		The Expert Panel allows you to change the beginning transition,
+		effect and ending transition for each photo.
+ 		You can also set the durations of each of these, and the photos caption.
+		Using the Expert Panel, you can also preview how a photo will look
+		with its transitions and effect and view a larger size image of a photo.
+	</para>
+	<para>
+		To use the Expert Panel, you must first select a photo in the thumbnail list.
+		The Expert Panel will change to reflect the current settings for that photo.
+		You can then use the controls described below in the Expert Panel to change the photos settings.
+		If you select multiple photos in the thumbnail list at one time,
+ 		the Expert Panel can be used
+		to change the settings for all selected photos at once.
+		If all the photos selected have the same value for a setting,
+ 		then the control will display that value.
+		If some photos have a different value, then the control will be blank.
+		Either way, a new value can be entered in the control and it will change
+		that setting for all selected photos to the entered value.
+	</para>
+	<para>
+		In addition to the Expert Panel, there are two menu items in
+		the <guimenu>Edit</guimenu> menu that are useful in Expert Mode.
+		<variablelist>
+			<varlistentry id="expert.RandomizeEffects"><term><guimenuitem>Randomize Effects</guimenuitem><indexterm><primary>randomize effects</primary></indexterm></term>
+				<listitem>
+					<para>
+						Chooses random transitions and effects for every photo in the show.
+						Photos that are locked will not have their transitions or effect changed.
+						After randomizing, you can then choose individual photos and change their transitions
+						and effects to fine tune the show.
+						The random transitions and effects are chosen from the set of selected
+						transitions and effects on the <guilabel>Transitions In Tab</guilabel>,
+						<guilabel>Effects Tab</guilabel> and <guilabel>Transitions Out Tab</guilabel>.
+						See <xref linkend="effects.tabs"/> for more information.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry id="expert.RedistributeTime"><term><guimenuitem>Redistribute Time</guimenuitem><indexterm><primary>redistribute time</primary></indexterm></term>
+				<listitem>
+					<para>
+						Modifies the effect timing of each unlocked photo to make
+						the duration of the show match the duration of the MP3 soundtrack.
+						So for example, you could modify the effect duration of the first
+						and last photo in the show to be long, then lock those two photos
+ 						and choose <guimenuitem>Redistribute Time</guimenuitem> and the
+						effect durations of the unlocked photos would be padded so that the total show
+						duration matches the MP3 duration.
+						If no photos are locked, then
+						<guimenuitem>Redistribute Time</guimenuitem> will divide the MP3 duration
+						equally among all your photos.
+						If you do not have an MP3 loaded, then the total show duration is used.
+					</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
+	</para>
+	<section id="expert.panel">
+		<title>Expert Panel</title>
+		<indexterm><primary>Expert Panel</primary></indexterm>
+		<para>
+			<mediaobject>
+				<caption><para>Expert Panel</para></caption>
+				<imageobject><imagedata fileref="images/expertPanel.png"/></imageobject>
+			</mediaobject>
+
+			<variablelist>
+				<varlistentry id="expert.lock">
+					<term>Lock<indexterm><primary>lock</primary></indexterm></term>
+					<listitem>
+						<para>
+							Selecting this checkbox will lock the photo.
+							A locked photos transitions and effect and their durations cannot be changed unless it is first unlocked.
+							A photo can be locked to prevent its transitions and effect from being changed
+							when using the <xref linkend="expert.RandomizeEffects"/> command
+ 							and to prevent its durations from being changed when using the <xref linkend="expert.RedistributeTime"/> command.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry id="expert.viewPhoto">
+					<term>
+						View photo
+						<inlinemediaobject><imageobject><imagedata fileref="images/viewPhotoButton.png"/></imageobject></inlinemediaobject>
+					</term>
+					<listitem>
+						<para>
+							Displays the photo viewer dialog.
+							This presents a larger view of the currently selected photo.
+							It also has controls to step forwards and backwards through your photos,
+							and to delete the current photo.
+							This is useful when you have a number of similar photos and cannot distinguish
+							them by their thumbnails.
+							You can use the photo viewer to see the photos larger and delete the ones you don't want.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>
+						Simple effect preview
+						<inlinemediaobject><imageobject><imagedata fileref="images/previewSimpleButton.png"/></imageobject></inlinemediaobject>
+						<indexterm><primary>preview effect</primary></indexterm>
+					</term>
+					<listitem>
+						<para>
+							Displays an animated Flash thumbnail preview of the currently selected photo and the
+							following photo.
+							This is a fast way to get a rough idea of how the effects and the transitions between
+							the two photos will appear.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry id="expert.fullPreview">
+					<term>
+						Full effect preview
+						<inlinemediaobject><imageobject><imagedata fileref="images/previewThemeButton.png"/></imageobject></inlinemediaobject>
+						<indexterm><primary>preview theme</primary></indexterm>
+					</term>
+					<listitem>
+						<para>
+							This is the same as the <guilabel>Simple effect preview</guilabel>,
+							except the currently selected Theme will be applied to the preview.
+							The preview will be at full size and with any captions and other Theme settings applied.
+							See <xref linkend="themes"/> for more information.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry id="expert.caption"><term>Photo Caption<indexterm><primary>captions</primary></indexterm></term>
+					<listitem>
+						<para>
+							Displays the text caption for the selected photo(s).
+							Clicking the caption button drops down an editable text area where the caption
+							can be entered or modified.
+							When you have entered the caption, press <keycap>Esc</keycap>
+							or click outside the text area to apply the caption text.
+							Photo captions are displayed with their photo by some Themes.
+							See <xref linkend="themes"/> for more information.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Transitions In</term>
+					<listitem>
+						<para>
+							Displays the beginning transition and its duration in seconds for the selected photo(s).
+						</para>
+						<para>
+							You can change the beginning transition by selecting from the scrolling dropdown list.
+							The beginning transitions that you have unchecked on the
+							<guilabel>Transitions In Tab</guilabel>
+							(see <xref linkend="effects.TransitionsInTab"/>)
+							will be displayed at the bottom of the list and greyed out,
+							however you can still select them.
+						</para>
+						<para>
+							You can change the beginning transition duration in seconds by typing a new
+							value or using the up/down arrows to change the value.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry id="expert.effects"><term>Effects</term>
+					<listitem>
+						<para>
+							Displays the effect and its duration in seconds for the selected photo(s).
+						</para>
+						<para>
+							You can change the effect by selecting from the scrolling dropdown list.
+							The effects that you have unchecked on the
+							<guilabel>Effects Tab</guilabel>
+							(see <xref linkend="effects.EffectsTab"/>)
+							will be displayed at the bottom of the list and greyed out,
+							however you can still select them.
+						</para>
+						<para>
+							The <guibutton>Customize...</guibutton> button will open the
+ 							<guilabel>Pan &amp; Zoom Editor</guilabel> (see <xref linkend="panzoom"/>),
+							allowing you to customize the effect on the selected photo.
+							The dropdown effect list will display <emphasis><guilabel>Customized Effect</guilabel></emphasis>
+							when the selected photo has had its effect customized.
+						</para>
+						<para>
+							You can change the effect duration by typing a new
+							value in seconds or using the up/down arrows to change the value.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Transitions Out</term>
+					<listitem>
+						<para>
+							Displays the ending transition, its duration in seconds
+							and its layer for the selected photo(s).
+						</para>
+						<para>
+							You can change the ending transition by selecting from the scrolling dropdown list.
+							The effects that you have unchecked on the
+							<guilabel>Transitions Out Tab</guilabel>
+							(see <xref linkend="effects.TransitionsOutTab"/>)
+							will be displayed at the bottom of the list and greyed out,
+							however you can still select them.
+						</para>
+						<para>
+							You can change the ending transition layer by selecting from the dropdown list.
+							Choosing <guilabel>Above next</guilabel> means that the selected photos ending
+							transition will play on top of the following photos beginning transition.
+							Choosing <guilabel>Below next</guilabel> means that the selected photos ending
+							transition will play underneath the following photos beginning transition.
+						</para>
+						<para>
+							You can change the ending transition duration by typing a new
+							value in seconds or using the up/down arrows to change the value.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry id="expert.showDuration"><term>Show Duration<indexterm><primary>duration</primary><secondary>show</secondary></indexterm></term>
+					<listitem>
+						<para>
+							Displays the total duration of all the photos in the show (minutes:seconds.hundredths).
+							If this is less than the <guilabel>MP3 Duration</guilabel>, then the photos will
+							finish playing first and the MP3 soundtrack will continue with no photos displayed.
+							If this is greater than the <guilabel>MP3 Duration</guilabel>,
+							then the MP3 soundtrack will finish first and the photos will continue to play silently.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>MP3 Duration<indexterm><primary>duration</primary><secondary>MP3</secondary></indexterm></term>
+					<listitem>
+						<para>
+							Displays the total duration of the MP3 soundtrack, if any (minutes:seconds.hundredths).
+							See the discussion of <guilabel>Show Duration</guilabel> for the duration relationship
+							between show and MP3.
+						</para>
+					</listitem>
+				</varlistentry>
+			</variablelist>
+		</para>
+
+		&panzoom.xml;
+	</section>
+</section>
+
+

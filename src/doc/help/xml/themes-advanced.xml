@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- ***** BEGIN LICENSE BLOCK *****
+   - Version: MPL 1.1
+   -
+   - The contents of this file are subject to the Mozilla Public License Version
+   - 1.1 (the "License"); you may not use this file except in compliance with
+   - the License. You may obtain a copy of the License at
+   - http://www.mozilla.org/MPL/
+   -
+   - Software distributed under the License is distributed on an "AS IS" basis,
+   - WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+   - for the specific language governing rights and limitations under the
+   - License.
+   -
+   - The Original Code is Photica Photopulse.
+   -
+   - The Initial Developer of the Original Code is
+   - Photica Inc.
+   - Portions created by the Initial Developer are Copyright (C) 2003
+   - the Initial Developer. All Rights Reserved.
+   -
+   - Contributor(s):
+   - Andrew Wason, Mike Mills
+   - info@photica.com
+   -
+   - ***** END LICENSE BLOCK ***** -->
+
+<section>
+	<title>Advanced Theme Authoring</title>
+	<para>
+		If you want to create a more sophisticated theme than a simple Backdrop Theme,
+		then you will need to write a <filename>skin.txt</filename> file that describes your theme.
+		You will need to create a new directory for your theme and place your <filename>skin.txt</filename>
+		descriptor along with any image or flash files that make up your theme.
+	</para>
+	<para>
+		The <filename>skin.txt</filename> file contains information describing your theme.
+ 		The file consists of comments and property names and their.
+ 		A comment is a line that starts with #.
+ 		Below is an example <filename>skin.txt</filename> file with comments that describe each property.
+		<example>
+			<title>skin.txt example</title>
+<programlisting>
+#################################################################
+# This is an example <application>PhotoPulse</application> skin file. To see this example
+# in action:
+# 1) Create a subdirectory called "sample" in the <application>PhotoPulse</application> skins directory
+# 2) Place this text in a file named "skin.txt" in the "sample" directory.
+# 3) Place images with the following names in the "sample" directory
+#    (image sizes are in parenthesis after the name):
+#      small-bg.jpg (320x240)
+#      large-bg.jpg (640x480)
+#      icon1.jpg (100x100)
+#      icon2.jpg (50x50)
+#    If your images are not the specified sizes, the skin will still work
+#    but the images might appear distorted.
+# 4) Quit <application>PhotoPulse</application> if it is running.
+# 5) Restart <application>PhotoPulse</application>
+# 6) When you click Create to make a show, click the Custom show
+#    button and you should see the skin "<application>PhotoPulse</application> Skin Example"
+#    in the Theme list.
+
+
+#################################################################
+# Skin name.
+# The value presented to the user in the Theme Chooser dialog
+# for choosing a skin theme. If not provided, then the skin
+# file name or directory name will be used.
+#
+name=<application>PhotoPulse</application> Skin Example
+
+#################################################################
+# Skin description.
+# The value presented to the user in the Theme Chooser dialog
+# to provide more information on the skin. This is optional.
+#
+description=This is a sample tutorial skin to help explain how skins work.
+
+#################################################################
+# Skin IDs.
+# This is a list of skin IDs within this archive.
+# This is used to support multiple sizes of a given skin.
+# There must be at least one skin ID provided here.
+#
+skins=small,large
+
+#################################################################
+# Foreground element IDs.
+# Each skin can have zero or more foreground elements.
+# These are displayed above the show photos, and layered
+# in the order listed (first element on bottom, next above that etc.)
+# The format is:
+# [skinID].foregrounds=[foregroundID],[foregroundID],...
+# In this case, we specify two foreground IDs for our small
+# and large skin IDs.
+#
+small.foregrounds=icon1,icon2
+large.foregrounds=icon1,icon2
+
+#################################################################
+# Foreground element filenames.
+# For each foreground you must specify the the foreground
+# image filename (gif, jpg, png, or swf).
+# The format is:
+# [skinID].foreground.[foregroundID]=[filename]
+#
+small.foreground.icon1=icon1.jpg
+small.foreground.icon2=icon2.jpg
+large.foreground.icon1=icon1.jpg
+large.foreground.icon2=icon2.jpg
+
+#################################################################
+# Foreground element regions.
+# For each foreground element you must specify the x,y position of
+# the top left corner of the element. You may optionally specify a
+# width and height. If the width/height is specified the element
+# will be scaled to fit the specified width/height if it is not
+# already that size.
+# In this example, we put icon1 in the upper left and icon2
+# in the lower right corner. We specify the actual size
+# of each image (so if your image is larger it will be scaled down).
+# The format is:
+# [skinID].foreground.[foregroundID].region=[x,y,w,h]
+# [skinID].foreground.[foregroundID].region=[x,y]
+#
+small.foreground.icon1.region=0,0,100,100
+small.foreground.icon2.region=270,190,50,50
+large.foreground.icon1.region=0,0,100,100
+large.foreground.icon2.region=590,430,50,50
+
+#################################################################
+# Background element IDs.
+# Each skin can have zero or more background elements.
+# These are displayed below the show photos, and layered
+# in the order listed (first element on bottom, next above that etc.)
+# The format is:
+# [skinID].backgrounds=[backgroundID],[backgroundID],...
+# In this case, we specify one background ID for our small
+# and large skin IDs.
+#
+small.backgrounds=bg
+large.backgrounds=bg
+
+#################################################################
+# Background element filenames.
+# For each background you must specify the the background
+# image filename (gif, jpg, png, or swf).
+# The format is:
+# [skinID].background.[backgroundID]=[filename]
+#
+small.background.bg=small-bg.jpg
+large.background.bg=large-bg.jpg
+
+#################################################################
+# Background element regions.
+# For each background element you must specify the x,y position of
+# the top left corner of the element. You may optionally specify a
+# width and height. If the width/height is specified the element
+# will be scaled to fit the specified width/height if it is not
+# already that size.
+# In this example, we could have skipped specifying the
+# background regions entirely. Since the x,y position defaults
+# to 0,0 and since we are using the size of the image as our region
+# size - the default region is the same as the region we are specifying.
+# So it is not really necessary to specify a region in this case.
+# The format is:
+# [skinID].background.[backgroundID].region=[x,y,w,h]
+# [skinID].background.[backgroundID].region=[x,y]
+#
+small.background.bg.region=0,0,320,240
+large.background.bg.region=0,0,640,480
+
+#################################################################
+# Skin size.
+# This is the size of the skin, this is not optional.
+# The format is:
+# [skinID].size=[w,h]
+#
+small.size=320,240
+large.size=640,480
+
+#################################################################
+# Stage region.
+# The stage is the region within the skin where the photos are displayed.
+# If not specified the stage is assumed to be the same size as the
+# skin size, and at position 0,0.
+# In this case, we will just use the skin size (so we don't really
+# need to specify the stage size below).
+# The format is:
+# [skinID].stage=[x,y,w,h]
+#
+small.stage=0,0,320,240
+large.stage=0,0,640,480
+</programlisting>
+		</example>
+	</para>
+
+
+
+	<para>
+		The next example demonstrates some more advanced properties.
+		It uses masking to "cut a hole" in a foreground image.
+		The foreground image would normally obscure our photos,
+		but we cut a hole the size of the stage so the photos play
+		underneath the foreground but are visible through the hole.
+		<example>
+			<title>skin.txt with masking</title>
+<programlisting>
+#################################################################
+# This is an example <application>PhotoPulse</application> skin file. To see this example
+# in action:
+# 1) Create a subdirectory called "mask" in the <application>PhotoPulse</application> skins directory
+# 2) Place this text in a file named "skin.txt" in the "mask" directory.
+# 3) Place images with the following names in the "mask" directory
+#    (image sizes are in parenthesis after the name):
+#      rock.jpg (20x20)
+#      foreground.jpg (640x480)
+#    If your images are not the specified sizes, the skin will still work
+#    but the images might appear distorted.
+# 4) Quit <application>PhotoPulse</application> if it is running.
+# 5) Restart <application>PhotoPulse</application>
+# 6) When you click Create to make a show, click the Custom show
+#    button and you should see the skin "Masking Example"
+#    in the Theme list.
+#
+name=Masking Example
+description=Demonstrates using masking to cut a hole through a foreground image.
+
+#################################################################
+# We just have one skin in this example.
+#
+skins=masksample
+
+#################################################################
+# The skin is 640x480 but the stage is only 320x240 and is
+# at position 160,120 - so the stage is centered in the skin.
+#
+masksample.size=640,480
+masksample.stage=160,120,320,240
+
+#################################################################
+# We specify a background image and position it's region to match
+# the stage region above. We specify that the image should tile.
+# This means it will repeat itself over the entire region.
+# This is good for textures, such as a rock texture.
+# You can use a small image and have it repeat itself.
+# Tiling only works if the region has a width and height specified.
+# Foreground elements can also be tiled.
+# The format is:
+# [skinID].background.[backgroundID].tile=true
+# [skinID].foreground.[foregroundID].tile=true
+#
+masksample.backgrounds=rock
+masksample.background.rock=rock.jpg
+masksample.background.rock.region=160,120,320,240
+masksample.background.rock.tile=true
+
+#################################################################
+# We specify a foreground image and position it's region to match
+# the entire skin. This would mean our photos would be hidden.
+# But, we specify a mask region in the same position as the stage
+# above. This cuts a hole in the foreground so our stage is visible.
+# Background elements can also be masked (so multiple background
+# elements could be layered with masks so lower elements show through).
+# The format is:
+# [skinID].background.[backgroundID].mask=[x,y,w,h]
+# [skinID].foreground.[foregroundID].mask=[x,y,w,h]
+#
+masksample.foregrounds=hole
+masksample.foreground.hole=foreground.jpg
+masksample.foreground.hole.region=0,0,640,480
+masksample.foreground.hole.mask=160,120,320,240
+
+#################################################################
+# An advanced element not covered here is rotation.
+# This allows you to rotate an element. For example, the same
+# decorative image could be used four times, and oriented and positioned
+# into each of the four corners of the stage.
+# The format is:
+# [skinID].background.[backgroundID].rotation=[degrees]
+# [skinID].foreground.[foregroundID].rotation=[degrees]
+#
+</programlisting>
+		</example>
+	</para>
+</section>

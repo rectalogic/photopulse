@@ -1,0 +1,34 @@
+Photica Photopulse
+
+Photopulse was a commercial Java desktop application from Photica
+that created animated Flash slideshows from photos and music.
+It includes a keyframe based pan/zoom editor and a number
+of transitions and effects.
+
+It is being open sourced under the MPL 1.1 license.
+
+
+* Building
+
+Photopulse is optimized for Windows, it includes some native Windows only
+JNI components for WMV video export and Flash animation in-application preview.
+Also the help system uses Microsoft HTMLHelp format and the application
+launcher is a Windows EXE.
+
+A private JRE is bundled with the application installer, the ant script
+checks that it is being built with the same version of Java which is 1.5.0_04.
+To build with a different version of Java pass
+  -Dphotopulse.java.required.version=1.X.X_XX
+to ant to specify the version.
+
+The native components are included precompiled, they can be rebuilt using
+Visual Studio using ant:
+  ant bin
+
+To build the Windows installer from a tag use:
+  ant -Dexport.tag=X.Y.Z export-installer
+
+
+The application can also be built and run on Mac OS X, without the
+native components. Use the ant task:
+  ant -Dphotopulse.java.required.version=1.5.0_16 run-wizard

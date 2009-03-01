@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- ***** BEGIN LICENSE BLOCK *****
+   - Version: MPL 1.1
+   -
+   - The contents of this file are subject to the Mozilla Public License Version
+   - 1.1 (the "License"); you may not use this file except in compliance with
+   - the License. You may obtain a copy of the License at
+   - http://www.mozilla.org/MPL/
+   -
+   - Software distributed under the License is distributed on an "AS IS" basis,
+   - WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+   - for the specific language governing rights and limitations under the
+   - License.
+   -
+   - The Original Code is Photica Photopulse.
+   -
+   - The Initial Developer of the Original Code is
+   - Photica Inc.
+   - Portions created by the Initial Developer are Copyright (C) 2003
+   - the Initial Developer. All Rights Reserved.
+   -
+   - Contributor(s):
+   - Andrew Wason, Mike Mills
+   - info@photica.com
+   -
+   - ***** END LICENSE BLOCK ***** -->
+
+<section id="overview">
+	<title>Creating Shows</title>
+	<para>
+		The process of creating a <application>PhotoPulse</application> show is simple.
+		<phrase userlevel="expert">
+			To let <application>PhotoPulse</application> do the hard work,
+			first check the <guimenu>View</guimenu> menu and
+			make sure you are <emphasis>not</emphasis> currently in <guimenuitem>Expert Mode</guimenuitem>.
+			When you are not in Expert Mode, <application>PhotoPulse</application> does most of the work for you,
+			but you have less control over how the final show appears.
+		</phrase>
+	</para>
+	<para>
+		Use the <guibutton>Photos...</guibutton> button to open the photos
+		to include in your show.
+		If you want a music soundtrack in your show, use the <guibutton>Music...</guibutton>
+		button to open an MP3 file.
+		Finally, <guibutton>Create...</guibutton> will prompt you to
+		choose the type of show to create and enter a filename for the show.
+	</para>
+	<para>
+		If your show has an MP3 soundtrack, when you create a show <application>PhotoPulse</application> will automatically adjust the show
+		so that your photos play the entire time the soundtrack is playing.
+		It does this by repeating photos in your show if needed to "pad" out the show
+		to fill the MP3 duration.
+		It may also temporarily remove photos from the final show if there are too many
+		photos to fit within a short MP3.
+		You can adjust this behavior by changing the speed at which the show plays
+		(the length of time each photo is displayed).
+		See see <xref linkend="settings.speed"/>.
+	</para>
+	<para>
+		Each time you create your show, <application>PhotoPulse</application> will choose a new random set of transitions
+		and effects for each photo.
+		It will choose transitions and effects from the set that you have selected
+		on the <guilabel>Transitions and Effects Tabs</guilabel> (see <xref linkend="effects.tabs"/>).
+	</para>
+	<para>
+		Each of these steps is covered in more detail in the following sections.
+		<phrase userlevel="expert">
+			The description above applies to shows created when not in Expert Mode.
+			If you want more control over creating shows, you can turn on Expert Mode.
+			See <xref linkend="expert"/> for more information.
+		</phrase>
+	</para>
+
+	&photos.xml;
+	&music.xml;
+	&effects.xml;
+	&create.xml;
+
+</section>
+

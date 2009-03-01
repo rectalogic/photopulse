@@ -1,0 +1,8 @@
+# $Rev: 555 $
+# http://www.tripod.lycos.com/guides/ftp.html
+description=Tripod FTP Upload
+hostname=ftp.tripod.com
+directory=photopulse
+viewURLTemplate=http://${userName}.tripod.com/photopulse/${showName}${showExt}
+manageURLTemplate=ftp://${userName}@ftp.tripod.com/
+signupURL=http://www.tripod.lycos.com/

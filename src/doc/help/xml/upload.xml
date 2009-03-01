@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- ***** BEGIN LICENSE BLOCK *****
+   - Version: MPL 1.1
+   -
+   - The contents of this file are subject to the Mozilla Public License Version
+   - 1.1 (the "License"); you may not use this file except in compliance with
+   - the License. You may obtain a copy of the License at
+   - http://www.mozilla.org/MPL/
+   -
+   - Software distributed under the License is distributed on an "AS IS" basis,
+   - WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+   - for the specific language governing rights and limitations under the
+   - License.
+   -
+   - The Original Code is Photica Photopulse.
+   -
+   - The Initial Developer of the Original Code is
+   - Photica Inc.
+   - Portions created by the Initial Developer are Copyright (C) 2003
+   - the Initial Developer. All Rights Reserved.
+   -
+   - Contributor(s):
+   - Andrew Wason, Mike Mills
+   - info@photica.com
+   -
+   - ***** END LICENSE BLOCK ***** -->
+
+<section id="upload">
+	<title>Uploading</title>
+	<indexterm><primary>uploading</primary></indexterm>
+	<indexterm><primary>FTP</primary></indexterm>
+	<indexterm><primary>hosting</primary></indexterm>
+	<indexterm><primary>publishing</primary></indexterm>
+	<para>
+		<application>PhotoPulse</application> makes it easy to publish web page (HTML) shows you create to a web site.
+		After you have uploaded a show, you can send the URL to your show to other people so they can view it.
+		Before you can upload a show, you need to configure your Upload Settings,
+		see <xref linkend="upload.settings"/> for more information.
+	</para>
+	<section>
+		<title>Choosing a Show</title>
+		<para>
+			To upload a show, use <guimenuitem>Upload Show...</guimenuitem> in the <guimenu>Tools</guimenu> menu
+			(see <xref linkend="menu.Tools"/>).
+			If you have not already configured your Upload Settings, you will be prompted to before you can upload.
+			Next, you will be presented with the upload file chooser.
+			Use this to choose the HTML show you wish to upload.
+			You should select the HTML filename, the corresponding folder of associated files
+			will also automatically be uploaded (e.g. choose <filename>MyShow.htm</filename>
+			and folder <filename>MyShow_files</filename> will also be uploaded).
+			You must create your shows in HTML format to upload them to a web site
+			(see <xref linkend="create.showType"/>).
+		</para>
+	</section>
+	<section>
+		<title>After Uploading</title>
+		<para>
+			While your show is uploading, a progress bar dialog will be displayed.
+			You can move this aside and continue working with <application>PhotoPulse</application>.
+			You can even upload multiple shows at the same time (each upload will have its own progress dialog).
+			After the show has successfully uploaded, the dialog will change to display the URL of your uploaded show
+ 			if available.
+		</para>
+		<para>
+			You can use the <guibutton>Copy</guibutton> tool button to copy the URL to the clipboard
+			for pasting into an email message or other document.
+			You can use the <guibutton>View Show</guibutton> button to view the uploaded show in your web browser.
+			You can use the <guibutton>Manage Show</guibutton> button to go to the online file management
+			area of your hosting provider in your web browser.
+			These buttons will be disabled if your hosting provider does not provide this functionality.
+		</para>
+	</section>
+	<section id="upload.settings">
+		<title>Upload Settings</title>
+		<para>
+			<application>PhotoPulse</application> uses FTP (File Transfer Protocol) to upload your show to a web site.
+			Check with your web site hosting provider to make sure they support FTP uploads.
+			The Upload Settings dialog allows you to choose from a preconfigured hosting provider,
+			or supply your own custom settings for any provider that supports FTP.
+			Display the Upload Settings dialog using <guimenuitem>Upload Settings...</guimenuitem>
+			in the <guimenu>Edit</guimenu> menu (see <xref linkend="menu.Edit"/>).
+			<mediaobject>
+				<caption><para>Upload Settings</para></caption>
+				<imageobject><imagedata fileref="images/uploadSettings.png"/></imageobject>
+			</mediaobject>
+			<variablelist>
+				<varlistentry><term>Login</term>
+					<listitem>
+						<para>
+							Enter your login or username for the FTP server.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Password</term>
+					<listitem>
+						<para>
+							Enter your password for the FTP server.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Save</term>
+					<listitem>
+						<para>
+							Check this box if you want <application>PhotoPulse</application> to remember your <guilabel>Password</guilabel>.
+							If you leave this unchecked, you will be prompted to enter it each time you upload a show.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Hosting Provider</term>
+					<listitem>
+						<para>
+							Choose your hosting provider from the dropdown list.
+							If your provider is not in the list, choose <guilabel>Custom</guilabel>
+							and fill out the <guilabel>Custom Settings</guilabel> form.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Signup...</term>
+					<listitem>
+						<para>
+							Click this button to go to the website of the selected <guilabel>Hosting Provider</guilabel>
+							to get information on how to sign up for an FTP account.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Custom Settings</term>
+					<listitem>
+						<para>
+							This form will appear if you choose <guilabel>Custom</guilabel>
+							from the <guilabel>Hosting Provider</guilabel> menu.
+
+							<variablelist>
+								<varlistentry><term>FTP server</term>
+									<listitem>
+										<para>
+											Enter the hostname of your hosting providers FTP server.
+										</para>
+									</listitem>
+								</varlistentry>
+								<varlistentry><term>Port</term>
+									<listitem>
+										<para>
+											Enter the FTP port, this will almost always be the default port 21.
+										</para>
+									</listitem>
+								</varlistentry>
+								<varlistentry><term>Server directory</term>
+									<listitem>
+										<para>
+											If you want to upload shows into a subdirectory on the server,
+											enter the directory path here.
+											This directory will be created if it doesn't already exist.
+										</para>
+									</listitem>
+								</varlistentry>
+								<varlistentry><term>URL</term>
+									<listitem>
+										<para>
+											Enter the HTTP URL that maps to the <guilabel>Server directory</guilabel>
+											you entered above (or the FTP root if you did not enter a directory).
+											This is the base URL you would enter in your web browser to access
+											files you uploaded using FTP.
+										</para>
+									</listitem>
+								</varlistentry>
+							</variablelist>
+						</para>
+					</listitem>
+				</varlistentry>
+			</variablelist>
+		</para>
+	</section>
+</section>

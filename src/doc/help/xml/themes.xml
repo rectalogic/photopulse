@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- ***** BEGIN LICENSE BLOCK *****
+   - Version: MPL 1.1
+   -
+   - The contents of this file are subject to the Mozilla Public License Version
+   - 1.1 (the "License"); you may not use this file except in compliance with
+   - the License. You may obtain a copy of the License at
+   - http://www.mozilla.org/MPL/
+   -
+   - Software distributed under the License is distributed on an "AS IS" basis,
+   - WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+   - for the specific language governing rights and limitations under the
+   - License.
+   -
+   - The Original Code is Photica Photopulse.
+   -
+   - The Initial Developer of the Original Code is
+   - Photica Inc.
+   - Portions created by the Initial Developer are Copyright (C) 2003
+   - the Initial Developer. All Rights Reserved.
+   -
+   - Contributor(s):
+   - Andrew Wason, Mike Mills
+   - info@photica.com
+   -
+   - ***** END LICENSE BLOCK ***** -->
+
+<section id="themes">
+	<title>Themes</title>
+	<indexterm><primary>themes</primary></indexterm>
+	<indexterm><primary>skins</primary></indexterm>
+	<para>
+		<application>PhotoPulse</application> themes define how a show looks when it plays back.
+		The theme defines the size of the show (width X height),
+		additional decorations such as a backdrop image or photo frame borders,
+		and the position and style of any photo captions in the show
+ 		<phrase userlevel="expert">(see <xref linkend="expert.caption"/>)</phrase>.
+	</para>
+	<para userlevel="expert">
+		You can preview a theme using the <guilabel>Full effect preview</guilabel> button
+		in the Expert Panel.
+ 		See <xref linkend="expert.fullPreview"/> for more information.
+	</para>
+	<section>
+		<title>Theme Chooser</title>
+		<para>
+			To select a theme for your show, click the <guibutton>Custom...</guibutton> button
+			on the <guilabel>Settings Tab</guilabel> (see <xref linkend="settings.theme"/>).
+			This will display the Theme Chooser.
+			<mediaobject>
+				<caption><para>Theme Chooser</para></caption>
+				<imageobject><imagedata fileref="images/themeChooser.png"/></imageobject>
+			</mediaobject>
+			<variablelist>
+				<varlistentry><term>Theme</term>
+					<listitem>
+						<para>
+							Lists the available themes installed on your system.
+							Selecting a theme in this list will display a description of the theme
+							and will display a list of available photo sizes for this theme in the
+							<guilabel>Photo size</guilabel> list.
+						</para>
+						<para>
+							The <guilabel>None</guilabel> theme is always available in the <guilabel>Theme</guilabel> list.
+							It is a plain theme with no decorations, but it contains a variety of photo sizes for
+ 							common photo orientations and aspect ratios.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Photo size<indexterm><primary>size</primary></indexterm></term>
+					<listitem>
+						<para>
+							Lists the available photo sizes for the selected theme.
+							This is the size your photos will be displayed at - the actual show
+							size itself might be larger due to theme decorations.
+							The photo sizes that are recommended for the photos in your show
+							are displayed normally. Photo sizes that are not a good match for your photos
+							are displayed greyed out. These sizes can still be selected and used.
+						</para>
+						<para>
+							When the <guilabel>None</guilabel> theme is selected, the photo sizes include
+							an additional special size <guilabel>Custom size...</guilabel>.
+							When this is selected, two additional controls appear allowing you
+							to set a custom <guilabel>Width</guilabel> and <guilabel>Height</guilabel>
+							for your skin.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry id="themes.description"><term>Description</term>
+					<listitem>
+						<para>
+							When a theme is selected, a description of the theme appears in the panel
+							below the theme list.
+							This description may also include a thumbnail image of the theme decorations.
+						</para>
+					</listitem>
+				</varlistentry>
+			</variablelist>
+		</para>
+	</section>
+	<section>
+		<title>Backdrop Theme</title>
+		<para>
+			You can use your own photos to create a backdrop theme.
+			A backdrop theme is a background image that your show plays in front of.
+			To create a backdrop theme, create a single image that is the size you want
+			your show to be. Place this image in the <application>PhotoPulse</application> <filename>skins</filename> folder.
+			This folder is in the <application>PhotoPulse</application> installation directory
+ 			(e.g. <filename>C:\Program Files\<application>PhotoPulse</application>\skins</filename>).
+			Restart <application>PhotoPulse</application> and your backdrop image name will appear in the theme list
+			where you can select it as the theme for your show.
+		</para>
+	</section>
+
+	&themes-advanced.xml;
+</section>
+
+

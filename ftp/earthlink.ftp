@@ -1,0 +1,8 @@
+# $Rev: 555 $
+# http://support.earthlink.net/support/TUTORIALS/filetransfer/?key=trans_ftp_10MB
+description=Earthlink FTP Upload
+hostname=ftp-www.earthlink.net
+directory=photopulse
+viewURLTemplate=http://home.earthlink.net/~${userName}/photopulse/${showName}${showExt}
+manageURLTemplate=ftp://${userName}@ftp-www.earthlink.net/
+signupURL=http://www.earthlink.net/

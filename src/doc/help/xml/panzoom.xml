@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- ***** BEGIN LICENSE BLOCK *****
+   - Version: MPL 1.1
+   -
+   - The contents of this file are subject to the Mozilla Public License Version
+   - 1.1 (the "License"); you may not use this file except in compliance with
+   - the License. You may obtain a copy of the License at
+   - http://www.mozilla.org/MPL/
+   -
+   - Software distributed under the License is distributed on an "AS IS" basis,
+   - WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+   - for the specific language governing rights and limitations under the
+   - License.
+   -
+   - The Original Code is Photica Photopulse.
+   -
+   - The Initial Developer of the Original Code is
+   - Photica Inc.
+   - Portions created by the Initial Developer are Copyright (C) 2003
+   - the Initial Developer. All Rights Reserved.
+   -
+   - Contributor(s):
+   - Andrew Wason, Mike Mills
+   - info@photica.com
+   -
+   - ***** END LICENSE BLOCK ***** -->
+
+<section userlevel="expert" id="panzoom">
+	<title>Pan &amp; Zoom Editor</title>
+	<indexterm><primary>Pan</primary></indexterm>
+	<indexterm><primary>Zoom</primary></indexterm>
+	<indexterm><primary>Rotate</primary></indexterm>
+	<para>
+		The <guilabel>Pan &amp; Zoom Editor</guilabel> is opened using the
+		<guibutton>Customize...</guibutton> button on the <guilabel>Expert Panel</guilabel>
+		(see <xref linkend="expert.effects"/>).
+		This editor is used to create a customized, documentary-style pan
+ 		and zoom (with rotation) animation sequence using your photo.
+		You create a number of <emphasis>keyframes</emphasis>
+		<indexterm><primary>keyframe</primary></indexterm>
+		defining the important points in the animation sequence.
+		Each keyframe occurs at a specific time in the animation,
+		and specifies the position (pan), zoom (size) and rotation of the photo at that point in time.
+		The position, zoom and rotation of the photo at each point in time between two keyframes
+		is automatically computed for you
+ 		(using a process called <emphasis>interpolation</emphasis> or <emphasis>tweening</emphasis>).
+ 	</para>
+	<para>
+		<mediaobject>
+			<caption><para>Pan &amp; Zoom Editor</para></caption>
+			<imageobject><imagedata fileref="images/panzoomEditor.png"/></imageobject>
+		</mediaobject>
+
+		<variablelist>
+			<varlistentry>
+				<term>Stage</term>
+				<listitem>
+					<para>
+						The stage displays the settings of the currently selected keyframe
+						as applied to the photo. The shaded areas of the stage represent those
+						areas that will not be visible in the final show.
+						What you see in the unshaded (clear) area of the stage is what you will
+						see in the final show.
+						The shape of the unshaded area changes to match the shape of the current
+						<link linkend="themes">theme</link> selected.
+					</para>
+					<para>
+						The photo in the stage can be dragged with the mouse to change its position.
+						The other controls to the right of the stage can also be used to change
+						the position, size and rotation of the photo.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>Keyframe Timeline</term>
+				<listitem>
+					<para>
+						The timeline represents each keyframe in the animation,
+						and their relative positions in time.
+						The first keyframe is always at time zero and cannot be moved.
+						Subsequent keyframes can be dragged to change the time at which they appear.
+						Clicking a keyframe selects it and changes the stage
+						and other controls to reflect the settings for that keyframe.
+					</para>
+					<para>
+						The portion of the timeline that is during the beginning and ending transitions
+						is shaded a lighter gray.
+					</para>
+					<para>
+						The <guibutton>Add</guibutton> button adds a new keyframe immediately
+						after the currently selected keyframe.
+						The new keyframe will initially have the same settings as the previously
+						selected keyframe.
+						The <guibutton>Remove</guibutton> button removes the currently
+						selected keyframe and selects the keyframe immediately before it.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>Position</term>
+				<listitem>
+					<para>
+						The <guilabel>X</guilabel> and <guilabel>Y</guilabel> spinner controls
+						can be used to adjust the position of the photo in the stage.
+						They represent the coordinates of the center of the photo relative to the
+						center of the stage (so X=0, Y=0 means the photo is centered in the stage).
+						The photo can also be dragged in the <guilabel>Stage</guilabel>,
+						the position spinners will update to reflect the current position.
+					</para>
+					<para>
+						If you accidentally drag the photo off the stage so it is no longer visible,
+						you can always enter 0 for each coordinate to recenter the photo.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>Zoom</term>
+				<listitem>
+					<para>
+						The zoom (scale) slider changes the size of the photo in the stage.
+						A zoom of zero is invisible, 100% is the full size of the original photo.
+						As you drag the zoom slider, a rectangle with an X through the center is drawn
+						on the stage to represent the size the photo will become once you release the slider.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>Rotation</term>
+				<listitem>
+					<para>
+						The rotation thumbwheel changes the rotation of the photo in the stage.
+						Drag (spin) it to the left to rotate counter-clockwise,
+						drag (spin) it to the right to rotate clockwise.
+						The current rotation in degrees is displayed above the thumbwheel.
+					</para>
+					<para>
+						A rotation of 0 degrees is unrotated. 90 degrees is flipped clockwise,
+						-90 degrees is flipped counterclockwise.
+						180 degrees is upside down, rotated clockwise.
+						-180 degrees is upside down, rotated counterclockwise.
+						360 degrees is one full clockwise rotation, so the photo appears unrotated in the stage.
+						-360 degrees is one full counter-clockwise rotation, so the photo appears unrotated in the stage.
+					</para>
+					<para>
+						Rotation is cumulative, so if one keyframe has a rotation of 0 degrees and the next
+						is 720 degrees, then even though the photo appears unrotated in both keyframes,
+						when the animation is played back the photo will spin through two complete clockwise
+ 						revolutions between the two keyframes.
+					</para>
+					<para>
+						The button to the left of the thumbwheel sets the rotation to -90 degrees (flipped left).
+						The button to the right sets the rotation to 90 degrees (flipped right).
+						The button below the thumbwheel sets the rotation back to 0 degrees (unrotated).
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>Smoothing</term>
+				<listitem>
+					<para>
+						Smoothing applies to a keyframe when the position of the photo in the keyframe
+						changes from the previous and next keyframe.
+						If the position changes, and <guilabel>Smoothing</guilabel> is checked,
+						then the path that the photo takes through the current keyframe will be on a curve.
+						If it is not checked, the path will be angular.
+						Smoothing applies only if the keyframe has a keyframe before and after it.
+						It does not have any effect on the first and last keyframes.
+					</para>
+					<para>
+						Selecting <guilabel>Smoothing</guilabel> results in a smoother, more fluid animation
+						when positions are changing between keyframes.
+						However, sometimes when you need tighter control over the motion a photo takes,
+						you may want to uncheck <guilabel>Smoothing</guilabel>.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>Easing</term>
+				<listitem>
+					<para>
+						Easing slows the speed of the animation as it passes through the keyframe.
+						When <guilabel>Easing</guilabel> is checked, the animation gradually slows as it enters
+						and leaves the keyframe, resulting in a "lingering" effect.
+ 						When it is not checked, the animation speed is constant through the keyframe.
+					</para>
+					<para>
+						Whereas <guilabel>Smoothing</guilabel> only applies to changes in position,
+						<guilabel>Easing</guilabel> applies to all aspects of the animation
+						(position, size and rotation). Checking <guilabel>Smoothing</guilabel> is useful,
+						for example, when you want to zoom in on a portion of a photo, linger momentarily,
+						then move on in the animation.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>Preview</term>
+				<listitem>
+					<para>
+						Displays a preview of the current animation.
+						The preview includes the beginning and ending transitions and theme.
+					</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
+	</para>
+</section>

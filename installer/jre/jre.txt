@@ -1,0 +1,89 @@
+
+
+Install JRE, copy installed directory.
+
+Add the following files to the JRE directory:
+	lib\cmm\PYCC.pf
+
+Delete the following files from the JRE directory:
+	del PATCH.ERR
+	del bin\JavaWebStart.dll
+	del bin\NPJPI*.dll
+	del bin\NPJava11.dll
+	del bin\NPJava12.dll
+	del bin\NPJava13.dll
+	del bin\NPJava14.dll
+	del bin\NPJava32.dll
+	del bin\NPOJI610.dll
+	del bin\RegUtils.dll
+	del bin\axbridge.dll
+	del bin\client\classes.jsa
+	del bin\deploy.dll
+	del bin\java.exe
+	del bin\javacpl.exe
+	del bin\javaws.exe
+	del bin\jpicom32.dll
+	del bin\jpicpl32.cpl
+	del bin\jpiexp32.dll
+	del bin\jpinscp.dll
+	del bin\jpioji.dll
+	del bin\jpishare.dll
+	del bin\jucheck.exe
+	del bin\jusched.exe
+	del bin\keytool.exe
+	del bin\kinit.exe
+	del bin\klist.exe
+	del bin\ktab.exe
+	del bin\orbd.exe
+	del bin\policytool.exe
+	del bin\rmid.exe
+	del bin\rmiregistry.exe
+	del bin\servertool.exe
+	del bin\tnameserv.exe
+	del lib\deploy.jar
+	del lib\ext\dnsns.jar
+	del lib\ext\sunjce_provider.jar
+	del lib\fonts\badfonts.txt
+	del lib\javaws.jar
+	rmdir /S/Q lib\javaws
+	del lib\plugin.jar
+
+
+Diff the JRE directory with the previous jre.zip to see if any files have been
+added/deleted from the distribution.
+
+pack200.exe all JRE jar files - delete the jar files and leave the pack
+files in jre.zip.
+  pack200.exe -J-Xmx256M --no-gzip --effort=9 lib\ext\sunpkcs11.pack lib\ext\sunpkcs11.jar
+  del lib\ext\sunpkcs11.jar
+  pack200.exe -J-Xmx256M --no-gzip --effort=9 lib\im\indicim.pack lib\im\indicim.jar
+  del lib\im\indicim.jar
+  pack200.exe -J-Xmx256M --no-gzip --effort=9 lib\im\thaiim.pack lib\im\thaiim.jar
+  del lib\im\thaiim.jar
+  pack200.exe -J-Xmx256M --no-gzip --effort=9 lib\jce.pack lib\jce.jar
+  del lib\jce.jar
+  pack200.exe -J-Xmx256M --no-gzip --effort=9 lib\jsse.pack lib\jsse.jar
+  del lib\jsse.jar
+  pack200.exe -J-Xmx256M --no-gzip --effort=9 lib\rt.pack lib\rt.jar
+  del lib\rt.jar
+
+Zip the jre directory (including the directory name) using max compression
+to jre.zip. Commit as installer\jre\jre.zip.
+
+Copy FontChecker.jar from installation and commit as installer\jre\FontChecker.jar
+C:\Program Files\Common Files\Java\Update\Base Images\jre1.5.0.b64\patch-jre1.5.0_03.b07\FontChecker.jar
+
+When installing, must remove bin\client\classes.jsa and rebuild at install
+time (via javaw -Xshare:dump on NT based systems only).
+Also remove lib/fonts/badfonts.txt and rebuild via FontChecker.jar.
+
+Update photopulse.iss install script "ExtraDiskSpaceRequired" to
+size difference between *.pack and *.jar files and include classes.jsa.
+
+Get total size of pack files (build prepare-fulldist):
+find . -name '*.pack' | xargs du -bc
+Get total size of unpacked jar files (build fulldist):
+find . -name '*.jar' -and -not -name 'photopulse.jar' -and -not -name 'ui-wizard.jar' -and -not -name 'local_policy.jar' -and -not -name 'US_export_policy.jar'| xargs du -bc
+Subtract pack size from this and add classes.jsa size - this is ExtraDiskSpaceRequired.
+
+Update build.xml photopulse.java.required.version property with new version.

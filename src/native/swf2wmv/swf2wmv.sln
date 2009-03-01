@@ -1,0 +1,25 @@
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "swf2wmv", "swf2wmv.vcproj", "{44997ED4-5B14-401E-8B58-967D4D81DF00}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug Application|Win32 = Debug Application|Win32
+		Debug DLL|Win32 = Debug DLL|Win32
+		Release Application|Win32 = Release Application|Win32
+		Release DLL|Win32 = Release DLL|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{44997ED4-5B14-401E-8B58-967D4D81DF00}.Debug Application|Win32.ActiveCfg = Debug Application|Win32
+		{44997ED4-5B14-401E-8B58-967D4D81DF00}.Debug Application|Win32.Build.0 = Debug Application|Win32
+		{44997ED4-5B14-401E-8B58-967D4D81DF00}.Debug DLL|Win32.ActiveCfg = Debug DLL|Win32
+		{44997ED4-5B14-401E-8B58-967D4D81DF00}.Debug DLL|Win32.Build.0 = Debug DLL|Win32
+		{44997ED4-5B14-401E-8B58-967D4D81DF00}.Release Application|Win32.ActiveCfg = Release Application|Win32
+		{44997ED4-5B14-401E-8B58-967D4D81DF00}.Release Application|Win32.Build.0 = Release Application|Win32
+		{44997ED4-5B14-401E-8B58-967D4D81DF00}.Release DLL|Win32.ActiveCfg = Release DLL|Win32
+		{44997ED4-5B14-401E-8B58-967D4D81DF00}.Release DLL|Win32.Build.0 = Release DLL|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- ***** BEGIN LICENSE BLOCK *****
+   - Version: MPL 1.1
+   -
+   - The contents of this file are subject to the Mozilla Public License Version
+   - 1.1 (the "License"); you may not use this file except in compliance with
+   - the License. You may obtain a copy of the License at
+   - http://www.mozilla.org/MPL/
+   -
+   - Software distributed under the License is distributed on an "AS IS" basis,
+   - WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+   - for the specific language governing rights and limitations under the
+   - License.
+   -
+   - The Original Code is Photica Photopulse.
+   -
+   - The Initial Developer of the Original Code is
+   - Photica Inc.
+   - Portions created by the Initial Developer are Copyright (C) 2003
+   - the Initial Developer. All Rights Reserved.
+   -
+   - Contributor(s):
+   - Andrew Wason, Mike Mills
+   - info@photica.com
+   -
+   - ***** END LICENSE BLOCK ***** -->
+
+<section id="photos">
+	<title>Photos</title>
+	<para>
+		The <guilabel>Photos Tab</guilabel> displays thumbnail images of all the photos
+		in your show.
+		You can add and remove photos from your show, and change the order in which your photos
+		are displayed during your show.
+		<phrase userlevel="expert">
+ 			When you are in Expert Mode, the Expert Panel is also displayed in
+			the <guilabel>Photos Tab</guilabel>.
+			This panel provides additional settings you can apply to selected photos.
+ 			See <xref linkend="expert.panel"/> for more information.
+ 		</phrase>
+	</para>
+	<section id="photos.adding">
+		<title>Adding Photos</title>
+		<indexterm><primary>photos</primary><secondary>adding</secondary></indexterm>
+		<indexterm><primary>Photos... button</primary></indexterm>
+		<para>
+			The <guibutton>Photos...</guibutton> button and the
+			<guimenuitem>Photos...</guimenuitem> menu item in the <guimenu>File</guimenu> menu
+			both display the Photo file chooser, allowing you to
+			select photos to include in your show.
+			Each time you use the Photo file chooser, the photos you choose are added
+			to the your show along with any existing photos.
+			So you can choose photos from one folder and add them to the show,
+			then use the Photo file chooser again to select additional photos from a different folder.
+		</para>
+		<para>
+			Thumbnails of the photos you open are displayed in the <guilabel>Photos Tab</guilabel>.
+			The order in which the thumbnails are displayed is the order in which the photos
+			will play back during the show.
+			You can delete photos from your show and change their order using the <guilabel>Photos Tab</guilabel>.
+		</para>
+		<para>
+			<mediaobject>
+				<caption><para>Photo Chooser</para></caption>
+				<imageobject><imagedata fileref="images/photoChooser.png"/></imageobject>
+			</mediaobject>
+			<variablelist>
+				<varlistentry><term>Photo File List</term>
+					<listitem>
+						<para>
+							Displays the photo image files and folders in the current folder.
+							Click on a filename to select it,
+							Ctrl-Click and Shift-Click to select multiple files at one time.
+							Click <guibutton>Open</guibutton> when you have selected the photos you want.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Open All</term>
+					<listitem>
+						<para>
+							Opens all photo files in the current directory.
+							This is a shortcut to avoid selecting each file individually.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Preview</term>
+					<listitem>
+						<para>
+							When this checkbox is checked, a thumbnail of
+							the currently selected photo file will be displayed.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Files of Type</term>
+					<listitem>
+						<para>
+							Select <guimenuitem>Image</guimenuitem> to display image files.
+ 							Select <guimenuitem>Flash file</guimenuitem> to display Macromedia Flash files.
+ 							Flash animations can be loaded into a show and treated like a photo.
+							The <guibutton>Preview</guibutton> thumbnail is disabled for Flash files.
+						</para>
+					</listitem>
+				</varlistentry>
+			</variablelist>
+		</para>
+	</section>
+	<section>
+		<title>Selecting Photos</title>
+		<indexterm><primary>photos</primary><secondary>selecting</secondary></indexterm>
+		<para>
+			You can select a single photo by clicking on it.
+			Hold the <keycap>Ctrl</keycap> key while clicking additional photo thumbnails to select multiple photos.
+			You can select a range of photos.
+ 			Click to select the first photo in the range,
+ 			then hold the <keycap>Shift</keycap> key and click the last photo in the range.
+			All photos in between the first and last photo will be selected.
+			In the <guimenu>Edit</guimenu> menu, use <guimenuitem>Select All</guimenuitem> to select all photos,
+			and <guimenuitem>Deselect All</guimenuitem> to deselect all photos.
+		</para>
+	</section>
+	<section>
+		<title>Manipulating Photos</title>
+		<indexterm><primary>photos</primary><secondary>manipulating</secondary></indexterm>
+		<para>
+			You can change the ordering of photos by dragging them.
+			Select the photos you want to move, then drag them to their new position
+			and release the mouse button to move them there.
+			As you drag the selected photos, a black insertion cursor will be drawn between photos
+			to show you where the photos will be inserted when you drop them.
+		</para>
+		<para>
+			You can duplicate photos by copying and pasting.
+			Select the photos you want to copy and choose <guimenuitem>Copy</guimenuitem> from
+			the <guimenu>Edit</guimenu> menu.
+			Then select the photo after which you want to place the duplicated photos
+			and choose <guimenuitem>Paste</guimenuitem>.
+			Copies of the selected photos will be inserted.
+		</para>
+		<para>
+			You can remove photos from your show by selecting them and choosing
+			<guimenuitem>Delete</guimenuitem> from the <guimenu>Edit</guimenu> menu.
+			You can also use <guimenuitem>Cut</guimenuitem> to remove photos,
+			cut photos can then be pasted back into the show using <guimenuitem>Paste</guimenuitem>.
+		</para>
+		<para>
+			Add new photos to your show using the <guibutton>Photos...</guibutton> button.
+			See <xref linkend="photos.adding"/> for more information.
+		</para>
+	</section>
+	<section id="photos.viewer">
+		<title>Viewing Photos</title>
+		<indexterm><primary>photos</primary><secondary>viewing</secondary></indexterm>
+		<para>
+			Double clicking on a thumbnail will display that photo in the <guilabel>Photo Viewer</guilabel>.
+			This presents the photo in a larger size, allowing you to see more detail.
+			While in the viewer you can step through the photos in your
+			show using the viewer buttons. You can also delete the currently viewed photo from within the viewer.
+			<phrase userlevel="expert">
+				When in Expert Mode, you can also display the viewer using the <guilabel>View photo</guilabel>
+				button in the Expert Panel.
+				See <xref linkend="expert.viewPhoto"/> for more information.
+			</phrase>
+		</para>
+	</section>
+	<section id="photos.tooltips">
+		<title>Photo Tooltips</title>
+		<indexterm><primary>photos</primary><secondary>tooltips</secondary></indexterm>
+		<para>
+			Pausing your mouse over a photo thumbnail (without clicking) will cause a tooltip to be
+ 			displayed near the upper right corner of the window.
+			<mediaobject>
+				<caption><para>Photo Tooltip</para></caption>
+				<imageobject><imagedata fileref="images/photoTooltip.png"/></imageobject>
+			</mediaobject>
+			The tooltip contains the photo filename followed by the time at which the photo will
+			be displayed in your show in parenthesis (minutes:seconds.hundredths).
+			Below that, the beginning transition, effect and ending transition names are displayed.
+			The ending transition is followed by the ending transition layer in parenthesis.
+		</para>
+	</section>
+</section>

@@ -1,0 +1,25 @@
+# $Rev: 538 $
+
+name=Full screen
+description=No theme. Plays the show at full screen. This will only work for shows saved as "Windows applications (*.exe)". Clicking on the playing show toggles between fullscreen and normal mode.
+skins=med43,large43,xlarge43,xxlarge43
+
+med43.size=640,480
+med43.foregrounds=fullscreen
+med43.foreground.fullscreen=fullscreen.swf
+med43.foreground.fullscreen.region=-20,-20,1,1
+
+large43.size=800,600
+large43.foregrounds=fullscreen
+large43.foreground.fullscreen=fullscreen.swf
+large43.foreground.fullscreen.region=-20,-20,1,1
+
+xlarge43.size=1024,768
+xlarge43.foregrounds=fullscreen
+xlarge43.foreground.fullscreen=fullscreen.swf
+xlarge43.foreground.fullscreen.region=-20,-20,1,1
+
+xxlarge43.size=1200,900
+xxlarge43.foregrounds=fullscreen
+xxlarge43.foreground.fullscreen=fullscreen.swf
+xxlarge43.foreground.fullscreen.region=-20,-20,1,1

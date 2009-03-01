@@ -1,0 +1,33 @@
+# $Rev: 538 $
+
+name=Cork noteboard
+description=<body bgcolor="#dddddd"><img src="thumbnail.png"><br>Cork noteboard with photo and PostIt caption
+skins=s450x300,s400x300
+
+s450x300.size=750,350
+s450x300.stage=275,25,450,300
+s450x300.foregrounds=postit,pin
+s450x300.foreground.postit=postit.swf
+s450x300.foreground.postit.region=30,70
+s450x300.foreground.postit.rotation=-20
+s450x300.foreground.pin=pin.png
+s450x300.foreground.pin.region=90,55
+s450x300.backgrounds=cork
+s450x300.background.cork=cork.png
+s450x300.background.cork.region=0,0,750,350
+s450x300.background.cork.tile=true
+s450x300.eventHandler=foreground/postit
+
+s400x300.size=700,350
+s400x300.stage=275,25,400,300
+s400x300.foregrounds=postit,pin
+s400x300.foreground.postit=postit.swf
+s400x300.foreground.postit.region=30,70
+s400x300.foreground.postit.rotation=-20
+s400x300.foreground.pin=pin.png
+s400x300.foreground.pin.region=90,55
+s400x300.backgrounds=cork
+s400x300.background.cork=cork.png
+s400x300.background.cork.region=0,0,700,350
+s400x300.background.cork.tile=true
+s400x300.eventHandler=foreground/postit

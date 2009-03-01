@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- ***** BEGIN LICENSE BLOCK *****
+   - Version: MPL 1.1
+   -
+   - The contents of this file are subject to the Mozilla Public License Version
+   - 1.1 (the "License"); you may not use this file except in compliance with
+   - the License. You may obtain a copy of the License at
+   - http://www.mozilla.org/MPL/
+   -
+   - Software distributed under the License is distributed on an "AS IS" basis,
+   - WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+   - for the specific language governing rights and limitations under the
+   - License.
+   -
+   - The Original Code is Photica Photopulse.
+   -
+   - The Initial Developer of the Original Code is
+   - Photica Inc.
+   - Portions created by the Initial Developer are Copyright (C) 2003
+   - the Initial Developer. All Rights Reserved.
+   -
+   - Contributor(s):
+   - Andrew Wason, Mike Mills
+   - info@photica.com
+   -
+   - ***** END LICENSE BLOCK ***** -->
+
+<section id="new">
+	<title>What's New</title>
+	<indexterm><primary>new features</primary></indexterm>
+	<para>
+		New features.
+		<itemizedlist>
+			<listitem userlevel="expert">
+				<para>
+					Improved automatic transition choices when randomizing effects
+					(see <xref linkend="expert.RandomizeEffects"/>).
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Eight new diagonal wipe transitions.
+					Reversed direction of left and right wipe transitions out.
+					Reversed direction of left and right skew transitions in.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Windows Media Video support.
+					Shows can be created in Windows Media (*.wmv) format.
+					QuickTime is no longer required to create videos.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					New Gray tone effect. Much improved Sepia tone effect.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					New custom pan and zoom effect editor.
+					Create unique "Ken Burns documentary" style effects with your photos
+					(see <xref linkend="panzoom"/>).
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Support for locking transitions and effects for a photo
+ 					(see <xref linkend="expert.lock"/>).
+					<xref linkend="expert.RedistributeTime"/> now applies to all unlocked photos,
+ 					independent of which are selected.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Support for adding Flash files (*.swf) to a show
+					(see <xref linkend="photos.adding"/>).
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Menu item to manage uploaded shows
+					(see <xref linkend="menu.Tools"/>).
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Simplified controls for selecting show type to create
+					(see <xref linkend="create.simpleShowType"/>).
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Remember last theme selected across application restarts.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					MP3 playlist (.m3u) editor for sequencing multiple music tracks
+					(see <xref linkend="music.playlist"/>).
+				</para>
+			</listitem>
+			<listitem userlevel="expert">
+				<para>
+					Effect and transition preview with or without themes
+					(see <xref linkend="expert.fullPreview"/>).
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Display dialog after creating a show offering tools that apply to the show
+					(see <xref linkend="create.tools"/>);
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					More accurate progress display when creating a show,
+					offers more feedback when creating long shows.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Support for launching neoDVD DVD burning application if installed.
+					When creating a video, neoDVD can be used to burn a DVD
+					(see <xref linkend="menu.neoDVD"/>).
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Checkbox to select high quality mode for use when creating video shows
+					(see <xref linkend="create.highQuality"/>).
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Support setting the playback frame rate of the show
+					(see <xref linkend="settings.framerate"/>).
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					New effects. "Pan left to right" across the top half of the zoomed photo.
+					"Zoom in 50% (top center)" and "Zoom out 50% (top center)" - zoom in and out
+					to the center of the top half of the photo.
+				</para>
+			</listitem>
+			<listitem userlevel="expert">
+				<para>
+					Partition transition/effect dropdown lists so that the favorite
+					transitions/effects are displayed first in the lists
+					(see <xref linkend="expert.effects"/>).
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Support theme thumbnails in the theme description
+					(see <xref linkend="themes.description"/>).
+				</para>
+			</listitem>
+		</itemizedlist>
+	</para>
+	<para>
+		Features added in previous releases.
+		<itemizedlist>
+			<listitem userlevel="expert">
+				<para>
+					Transition and effect duration controls for each photo
+					(see <xref linkend="expert.panel"/>).
+				</para>
+			</listitem>
+			<listitem userlevel="expert">
+				<para>
+					Automatic time distribution control
+					(see <xref linkend="expert.RedistributeTime"/>).
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Photo info tooltips (see <xref linkend="photos.tooltips"/>).
+				</para>
+			</listitem>
+			<listitem userlevel="expert">
+				<para>
+					Photos and MP3 duration display (see <xref linkend="expert.showDuration"/>).
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					MP3 play list (.m3u) support.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Photo viewer (see <xref linkend="photos.viewer"/>).
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Sheriff's badge and Starburst transitions.
+				</para>
+			</listitem>
+			<listitem userlevel="expert">
+				<para>
+					Photo caption support (see <xref linkend="expert.caption"/>).
+				</para>
+			</listitem>
+		</itemizedlist>
+	</para>
+</section>
+
+

@@ -1,0 +1,41 @@
+# $Rev: 538 $
+
+# See http://www.antmobile.com/
+
+name=PocketPC for FlashAssist
+description=No theme. Designed for use on the PocketPC device using FlashAssist (http://www.antmobile.com/). The sizes are for fullscreen, and with and without the menubar visible.
+skins=fullflip,full,mbflip,mb,nmbflip,nmb
+
+# Fullscreen, flipped
+fullflip.size=240,320
+fullflip.stage=-320,0,320,240
+fullflip.foregrounds=fa
+fullflip.foreground.fa=flashassist.swf
+fullflip.foreground.fa.region=-18,222,18,18
+fullflip.backgrounds=fs
+fullflip.background.fs=rootflipper.swf
+
+# Fullscreen
+full.size=240,320
+full.foregrounds=fa
+full.foreground.fa=flashassist.swf
+full.foreground.fa.region=222,302,18,18
+
+# Menubar, flipped
+mbflip.size=240,268
+mbflip.stage=-268,0,268,240
+mbflip.backgrounds=fs
+mbflip.background.fs=rootflipper.swf
+
+# Menubar
+mb.size=240,268
+
+# No menubar, flipped
+nmbflip.size=240,295
+nmbflip.stage=-295,0,295,240
+nmbflip.backgrounds=fs
+nmbflip.background.fs=rootflipper.swf
+
+# No menubar
+nmb.size=240,295
+

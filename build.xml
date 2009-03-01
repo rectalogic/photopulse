@@ -1,0 +1,874 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- ***** BEGIN LICENSE BLOCK *****
+   - Version: MPL 1.1
+   -
+   - The contents of this file are subject to the Mozilla Public License Version
+   - 1.1 (the "License"); you may not use this file except in compliance with
+   - the License. You may obtain a copy of the License at
+   - http://www.mozilla.org/MPL/
+   -
+   - Software distributed under the License is distributed on an "AS IS" basis,
+   - WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+   - for the specific language governing rights and limitations under the
+   - License.
+   -
+   - The Original Code is Photica Photopulse.
+   -
+   - The Initial Developer of the Original Code is
+   - Photica Inc.
+   - Portions created by the Initial Developer are Copyright (C) 2009
+   - the Initial Developer. All Rights Reserved.
+   -
+   - Contributor(s):
+   - Andrew Wason, Mike Mills
+   - info@photica.com
+   -
+   - ***** END LICENSE BLOCK ***** -->
+
+<project name="photopulse" default="dist-wizard" basedir=".">
+
+    <!-- Keep this in sync with the bundled JRE version in installer/jre -->
+    <property name="photopulse.java.required.version" value="1.5.0_04"/>
+
+    <!-- Load optional build overrides -->
+    <property file="build.properties"/>
+
+    <!-- Set to the basename of one of the branding property files -->
+    <property name="branding" value="photica"/>
+
+    <property name="export.target" value="installer"/>
+
+    <property name="build.home" value="build"/>
+    <!-- Build absolute path property -->
+    <path id="build.home" path="${build.home}"/>
+    <property name="build.home.path" refid="build.home"/>
+
+    <property name="dist.home" value="dist"/>
+    <!-- Build absolute path property -->
+    <path id="dist.home" path="${dist.home}"/>
+    <property name="dist.home.path" refid="dist.home"/>
+
+    <property name="tools.home" value="${build.home}/tools"/>
+
+    <property name="debuglevel" value="lines,source"/>
+
+    <path id="classpath">
+        <pathelement location="lib/jgen.jar"/>
+        <pathelement location="lib/jaxen-dom.jar"/>
+        <pathelement location="lib/jaxen-core.jar"/>
+        <pathelement location="lib/saxpath.jar"/>
+        <pathelement location="lib/log4j.jar"/>
+        <pathelement location="lib/concurrent.jar"/>
+    </path>
+
+    <selector id="jax-jars">
+        <or>
+            <filename name="lib/photopulse.jar"/>
+            <filename name="lib/ui-wizard.jar"/>
+        </or>
+    </selector>
+
+    <target name="prepare-revision" unless="export.revision">
+        <exec dir="." executable="git" outputproperty="export.revision" failifexecutionfails="false">
+            <arg value="describe"/>
+        </exec>
+		<!-- Default value -->
+		<property name="export.revision" value="0.0.0"/>
+    </target>
+
+    <target name="prepare-version" depends="prepare-revision">
+        <condition property="build.version" value="${export.revision}">
+            <isfalse value="${export.tag}"/>
+        </condition>
+        <condition property="build.version" value="${export.tag}">
+            <istrue value="${export.tag}"/>
+        </condition>
+    </target>
+
+    <target name="check-java">
+        <condition property="photopulse.java.version.valid">
+            <equals arg1="${photopulse.java.required.version}" arg2="${java.version}"/>
+        </condition>
+        <fail message="Must use Java version ${photopulse.java.required.version}" unless="photopulse.java.version.valid"/>
+    </target>
+
+    <target name="prepare" depends="check-java, prepare-version, branding">
+        <mkdir dir="${build.home}/classes"/>
+        <mkdir dir="${build.home}/lib"/>
+        <mkdir dir="${build.home}/src"/>
+    </target>
+
+    <target name="branding">
+        <property file="branding/${branding}.properties"/>
+        <!-- Validate all branding properties are set -->
+
+        <!-- URL to purchase product -->
+        <fail unless="branding.purchase.url" message="Missing required branding property"/>
+        <!-- URL to product info -->
+        <fail unless="branding.product.url" message="Missing required branding property"/>
+        <!-- URL to register product -->
+        <fail unless="branding.register.url" message="Missing required branding property"/>
+        <!-- boolean to require license (no trial, retail mode) -->
+        <fail unless="branding.requireLicense" message="Missing required branding property"/>
+        <!-- int (8 bit) root of license keys -->
+        <fail unless="branding.licenseVersion" message="Missing required branding property"/>
+        <!-- boolean to support expert mode -->
+        <fail unless="branding.enableExpertMode" message="Missing required branding property"/>
+        <!-- boolean to enable expert mode by default -->
+        <fail unless="branding.defaultExpertMode" message="Missing required branding property"/>
+        <!-- boolean to support load/save project files -->
+        <fail unless="branding.enableProjects" message="Missing required branding property"/>
+        <!-- Unique product ID - cryptic form of ${branding} for display in UI -->
+        <fail unless="branding.productID" message="Missing required branding property"/>
+        <!-- Product name for UI -->
+        <fail unless="branding.productName" message="Missing required branding property"/>
+        <!-- Base filename of installer EXE -->
+        <fail unless="branding.installer.basename" message="Missing required branding property"/>
+        <!-- Title to display in installer -->
+        <fail unless="branding.installer.title" message="Missing required branding property"/>
+
+        <!-- branding.resourceOverride is not required, it allows resources to be tagged
+            with a *.[override] extension so they will be used in place of the default resource -->
+
+        <!-- Ant FileSet includes/excludes lists for ftp preset files -->
+        <fail unless="branding.ftp.includes" message="Missing required branding property"/>
+        <fail unless="branding.ftp.excludes" message="Missing required branding property"/>
+
+        <!-- Ant FileSet includes/excludes lists for skins -->
+        <fail unless="branding.skins.includes" message="Missing required branding property"/>
+        <fail unless="branding.skins.excludes" message="Missing required branding property"/>
+
+        <!-- List of exclusively included effects. Must be formatted as a string. Set to null if property not set. -->
+        <property name="branding.begintrans.includes" value="null"/>
+        <property name="branding.effect.includes" value="null"/>
+        <property name="branding.endtrans.includes" value="null"/>
+
+        <condition property="branding.installer.ppp.exclude" value="">
+            <istrue value="${branding.enableProjects}"/>
+        </condition>
+        <condition property="branding.installer.ppp.exclude" value=";">
+            <isfalse value="${branding.enableProjects}"/>
+        </condition>
+    </target>
+
+    <target name="brand-src" depends="branding">
+        <copy todir="${build.home}/src">
+            <fileset dir="src/java">
+                <include name="com/photica/photopulse/Branding.java"/>
+            </fileset>
+            <!-- Expand Ant properties in Java source -->
+            <filterchain>
+                <expandproperties/>
+            </filterchain>
+        </copy>
+    </target>
+
+    <target name="compile" depends="prepare, brand-src">
+        <!-- Compile filtered Branding.java -->
+        <javac destdir="${build.home}/classes"
+                debug="true" debuglevel="${debuglevel}" optimize="on" deprecation="on">
+            <src path="${build.home}/src"/>
+            <classpath refid="classpath"/>
+        </javac>
+        <!-- Compile source excluding unfiltered Branding.java -->
+        <javac destdir="${build.home}/classes"
+                debug="true" debuglevel="${debuglevel}" optimize="on" deprecation="on">
+            <compilerarg value="-Xlint:unchecked"/>
+            <src path="src/java"/>
+            <exclude name="com/photica/photopulse/Branding.java"/>
+            <classpath refid="classpath"/>
+        </javac>
+    </target>
+
+    <target name="resources">
+        <!-- Copy any generic source resource files -->
+        <copy todir="${build.home}/classes">
+            <fileset dir="src/java">
+                <exclude name="**/*.[*]"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <!-- Copy branding resource overrides, replacing any generics above -->
+        <copy todir="${build.home}/classes" overwrite="true">
+            <fileset dir="src/java">
+                <include name="**/*.[${branding.resourceOverride}]"/>
+            </fileset>
+            <mapper type="glob" from="*.[${branding.resourceOverride}]" to="*"/>
+        </copy>
+
+        <!-- Copy any generic resource files -->
+        <copy todir="${build.home}/resources">
+            <fileset dir="resources">
+                <exclude name="**/*.[*]"/>
+            </fileset>
+        </copy>
+        <!-- Copy branding resource overrides, replacing any generics above -->
+        <copy todir="${build.home}/resources" overwrite="true">
+            <fileset dir="resources">
+                <include name="**/*.[${branding.resourceOverride}]"/>
+            </fileset>
+            <mapper type="glob" from="*.[${branding.resourceOverride}]" to="*"/>
+        </copy>
+
+        <!-- Copy any generic source swt files -->
+        <copy todir="${build.home}/swt">
+            <fileset dir="swt">
+                <exclude name="src/"/>
+                <exclude name="**/*.[*]"/>
+            </fileset>
+        </copy>
+        <!-- Copy branding swt overrides, replacing any generics above -->
+        <copy todir="${build.home}/swt" overwrite="true">
+            <fileset dir="swt">
+                <exclude name="src/"/>
+                <include name="**/*.[${branding.resourceOverride}]"/>
+            </fileset>
+            <mapper type="glob" from="*.[${branding.resourceOverride}]" to="*"/>
+        </copy>
+    </target>
+
+    <target name="jar" depends="compile, resources">
+        <jar jarfile="${build.home}/lib/photopulse.jar" compress="false">
+            <manifest>
+                <attribute name="Class-Path" value="jgen.jar saxpath.jar jaxen-core.jar jaxen-dom.jar log4j.jar concurrent.jar jai_imageio.jar clibwrapper_jiio.jar mlibwrapper_jai.jar"/>
+                <attribute name="Implementation-Title" value="PhotoPulse [${branding.productID} build]"/>
+                <attribute name="Implementation-Version" value="${build.version}"/>
+                <attribute name="Implementation-Vendor" value="Photica Inc."/>
+                <attribute name="Sealed" value="true"/>
+            </manifest>
+            <fileset dir="${build.home}/classes">
+                <exclude name="com/photica/photopulse/launcher/**"/>
+                <exclude name="com/photica/photopulse/ui/**"/>
+                <exclude name="com/photica/ui/**"/>
+            </fileset>
+            <zipfileset dir="${build.home}/swt" prefix="swt"/>
+            <zipfileset dir="${build.home}/resources" prefix="resources"/>
+        </jar>
+    </target>
+
+    <target name="jar-wizard" depends="jar">
+        <jar jarfile="${build.home}/lib/ui-wizard.jar" compress="false">
+            <manifest>
+                <attribute name="Main-Class" value="com.photica.photopulse.ui.wizard.Main"/>
+                <attribute name="Class-Path" value="photopulse.jar"/>
+                <attribute name="Sealed" value="true"/>
+            </manifest>
+            <fileset dir="${build.home}/classes">
+                <include name="com/photica/photopulse/ui/wizard/**"/>
+                <include name="com/photica/ui/**"/>
+            </fileset>
+        </jar>
+    </target>
+
+    <target name="jar-console" depends="jar">
+        <jar jarfile="${build.home}/lib/ui-console.jar" compress="false">
+            <manifest>
+                <attribute name="Main-Class" value="com.photica.photopulse.ui.console.Main"/>
+                <attribute name="Class-Path" value="photopulse.jar"/>
+            </manifest>
+            <fileset dir="${build.home}/classes">
+                <include name="com/photica/photopulse/ui/console/**"/>
+            </fileset>
+        </jar>
+    </target>
+
+    <macrodef name="build-custom-skin">
+        <attribute name="skin"/>
+        <!-- Use an illegal filename for default assets -->
+        <attribute name="assets" default=":"/>
+        <sequential>
+            <mkdir dir="${dist.home}/skins/@{skin}"/>
+            <copy todir="${dist.home}/skins/@{skin}">
+                <fileset dir="skins/custom/@{skin}">
+                    <exclude name="src/"/>
+                </fileset>
+                <fileset dir="skins/shared" includes="@{assets}"/>
+            </copy>
+        </sequential>
+    </macrodef>
+
+    <target name="skins">
+        <mkdir dir="${dist.home}/skins/shared"/>
+        <copy todir="${dist.home}/skins/shared">
+            <fileset dir="skins/shared">
+                <include name="caption.swt"/>
+                <include name="BComicGSansGMS.fft"/>
+                <!-- Include the following 2 so they are available when extra-skins are installed by the user -->
+                <include name="caption-crossfade.swt"/>
+                <include name="BVerdana.fft"/>
+            </fileset>
+        </copy>
+        
+        <build-custom-skin skin="simpleframe"/>
+        <build-custom-skin skin="Gold03Frame"/>
+        <build-custom-skin skin="corkboard"/>
+        <build-custom-skin skin="35mmSlideFrame" assets="caption.swt BComicGSansGMS.fft"/>
+        <build-custom-skin skin="simplecaption" assets="caption.swt BComicGSansGMS.fft"/>
+        <build-custom-skin skin="tv"/>
+        <build-custom-skin skin="fullscreen"/>
+        <build-custom-skin skin="device" assets="rootflipper.swf"/>
+        <build-custom-skin skin="flashassist" assets="rootflipper.swf"/>
+        <build-custom-skin skin="StPatricksDayFrame" assets="caption.swt BComicGSansGMS.fft"/>
+    </target>
+
+    <target name="video">
+        <mkdir dir="${dist.home}/video"/>
+        <copy todir="${dist.home}/video">
+            <fileset dir="video"/>
+        </copy>
+    </target>
+
+    <target name="ftp">
+        <mkdir dir="${dist.home}/ftp"/>
+        <copy todir="${dist.home}/ftp">
+            <fileset dir="ftp" includes="${branding.ftp.includes}" excludes="${branding.ftp.excludes}"/>
+        </copy>
+    </target>
+
+    <target name="dist" depends="jar">
+
+        <!-- Copy built jars -->
+        <copy todir="${dist.home}/lib">
+            <fileset dir="${build.home}/lib">
+                <exclude name="launcher.jar"/>
+                <exclude name="ui-wizard.jar"/>
+                <exclude name="ui-console.jar"/>
+            </fileset>
+        </copy>
+
+        <!-- Copy canned jars -->
+        <copy todir="${dist.home}/lib">
+            <fileset dir="lib">
+                <exclude name="build/"/>
+            </fileset>
+        </copy>
+
+        <!-- Copy JAI and other JNI DLLs -->
+        <copy todir="${dist.home}">
+            <fileset dir="bin">
+                <include name="*.dll"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="dist-wizard" depends="dist, jar-wizard, skins, video, ftp">
+        <!-- Copy built jar -->
+        <copy file="${build.home}/lib/ui-wizard.jar" todir="${dist.home}/lib"/>
+    </target>
+
+    <target name="dist-console" depends="dist, jar-console">
+        <!-- Copy built jar -->
+        <copy file="${build.home}/lib/ui-console.jar" todir="${dist.home}/lib"/>
+    </target>
+
+    <target name="launcher-jar" depends="compile">
+        <jar jarfile="${build.home}/lib/launcher.jar" compress="false">
+            <manifest>
+                <attribute name="Main-Class" value="com.photica.photopulse.launcher.Launcher"/>
+                <attribute name="Sealed" value="true"/>
+            </manifest>
+            <fileset dir="${build.home}/classes">
+                <include name="com/photica/photopulse/launcher/**"/>
+            </fileset>
+        </jar>
+    </target>
+
+	<target name="bin" description="Build binaries using VisualStudio">
+		<!-- Compile EXE/DLLs into bin using VisualStudio command line builder.
+			These need JAVA_HOME set to the JDK. -->
+		<exec executable="VCBUILD" failonerror="true">
+			<arg file="src/native/photopulse/photopulse.sln"/>
+			<arg value="Release|Win32"/>
+		</exec>
+		<exec executable="VCBUILD" failonerror="true">
+			<arg file="src/native/FlashPlayerControlJNI/FlashPlayerControlJNI.sln"/>
+			<arg value="Release|Win32"/>
+		</exec>
+		<exec executable="VCBUILD" failonerror="true">
+			<arg file="src/native/swf2wmv/swf2wmv.sln"/>
+			<arg value="Release DLL|Win32"/>
+		</exec>
+	</target>
+
+    <target name="dist-launcher-exe" depends="launcher-jar">
+        <!-- Copy generic launcher, then override if needed -->
+        <copy todir="${dist.home}" file="bin/photopulse.exe" overwrite="true"/>
+        <copy todir="${dist.home}" overwrite="true">
+            <fileset dir="bin">
+                <include name="photopulse.exe.[${branding.resourceOverride}]"/>
+            </fileset>
+            <mapper type="glob" from="*.[${branding.resourceOverride}]" to="*"/>
+        </copy>
+
+        <!-- Concatenate photopulse.exe and launcher.jar using DOS copy command.
+            photopulse.exe+launcher.jar=>photopulse.exe
+            This remains a valid EXE and can also be put in the classpath -->
+        <exec executable="copy" vmlauncher="false">
+            <arg value="/Y"/>
+            <arg value="/B"/>
+            <arg file="${dist.home}/photopulse.exe"/>
+            <arg value="+"/>
+            <arg file="${build.home}/lib/launcher.jar"/>
+            <arg file="${dist.home}/photopulse.exe"/>
+        </exec>
+
+        <!-- Copy generic launcher splash.bmp, then override if needed -->
+        <copy todir="${dist.home}" file="src/native/shared/splash.bmp"/>
+        <copy todir="${dist.home}" overwrite="true">
+            <fileset dir="src/native/shared">
+                <include name="splash.bmp.[${branding.resourceOverride}]"/>
+            </fileset>
+            <mapper type="glob" from="*.[${branding.resourceOverride}]" to="*"/>
+        </copy>
+
+    </target>
+
+    <target name="prepare-tools">
+        <mkdir dir="${tools.home}"/>
+        <mkdir dir="${tools.home}/jax-classes"/>
+        <mkdir dir="${tools.home}/tools-classes"/>
+    </target>
+
+    <target name="jax-compile-tools" depends="prepare-tools">
+        <javac destdir="${tools.home}/jax-classes"
+                debug="true" debuglevel="${debuglevel}" optimize="on" deprecation="on">
+            <compilerarg value="-Xlint:unchecked"/>
+            <src path="src/tools/java"/>
+            <!-- We need some shared code from the app, but we only want to compile the tools code -->
+            <src path="src/java"/>
+            <include name="com/photica/photopulse/jax/**"/>
+        </javac>
+    </target>
+
+    <target name="jax-tools" depends="jax-compile-tools">
+        <jar jarfile="${tools.home}/jax.jar" compress="false">
+            <manifest>
+                <attribute name="Main-Class" value="com.photica.photopulse.jax.JaxEncode"/>
+                <attribute name="Implementation-Title" value="com.photica.photopulse.jax"/>
+                <attribute name="Implementation-Vendor" value="Photica Inc."/>
+            </manifest>
+            <fileset dir="${tools.home}/jax-classes">
+                <include name="com/photica/photopulse/jax/**"/>
+                <include name="com/photica/photopulse/launcher/jax/**"/>
+            </fileset>
+        </jar>
+    </target>
+
+    <target name="photopulse-compile-tools" depends="prepare-tools, dist">
+        <javac destdir="${tools.home}/tools-classes"
+                debug="true" debuglevel="${debuglevel}" optimize="on" deprecation="on">
+            <compilerarg value="-Xlint:unchecked"/>
+            <src path="src/tools/java"/>
+            <exclude name="com/photica/photopulse/jax/**"/>
+            <classpath refid="classpath"/>
+            <classpath path="${dist.home}/lib/photopulse.jar"/>
+        </javac>
+    </target>
+
+    <target name="photopulse-tools" depends="photopulse-compile-tools">
+        <jar jarfile="${tools.home}/tools.jar" compress="false">
+            <manifest>
+                <attribute name="Class-Path" value="../../dist/lib/photopulse.jar"/>
+                <attribute name="Implementation-Title" value="PhotoPulse Tools"/>
+            </manifest>
+            <fileset dir="${tools.home}/tools-classes"/>
+            <!-- Copy any source resource files -->
+            <fileset dir="src/tools/java">
+                <exclude name="**/*.java"/>
+                <exclude name="**/*.mf"/>
+            </fileset>
+        </jar>
+    </target>
+
+    <target name="tools" depends="jax-tools, photopulse-tools"/>
+
+    <!-- Add installer specific files and JRE to the dist -->
+    <target name="prepare-fulldist" depends="dist-wizard, jax-tools, dist-launcher-exe, docs-help">
+
+        <!-- Jax encode built jars only -->
+        <apply executable="java" failonerror="true" parallel="true">
+            <arg value="-jar"/>
+            <arg file="${build.home}/tools/jax.jar"/>
+            <!-- Output dir -->
+            <arg file="${dist.home}/lib"/>
+            <!-- Built jars -->
+            <fileset dir="${build.home}">
+                <selector refid="jax-jars"/>
+            </fileset>
+        </apply>
+
+        <!-- Extract JRE -->
+        <unzip src="installer/jre/jre.zip" dest="${dist.home}"/>
+
+        <!-- Copy licenses, expand properties in photopulse.txt -->
+        <copy todir="${dist.home}/licenses">
+            <fileset dir="installer/licenses/">
+                <include name="photopulse.txt"/>
+            </fileset>
+            <filterchain>
+                <expandproperties/>
+            </filterchain>
+        </copy>
+        <copy todir="${dist.home}/licenses">
+            <fileset dir="installer/licenses/">
+                <exclude name="photopulse.txt"/>
+            </fileset>
+        </copy>
+
+        <!-- Copy Internet shortcuts -->
+        <copy todir="${dist.home}">
+            <fileset dir="installer">
+                <include name="*.url"/>
+            </fileset>
+            <filterchain>
+                <expandproperties/>
+            </filterchain>
+        </copy>
+
+        <!-- Copy HtmlHelp -->
+        <copy file="${build.home}/help/PhotoPulse.chm" todir="${dist.home}"/>
+    </target>
+
+    <target name="installerdist" depends="prepare-fulldist">
+        <fileset id="pack-jars" dir="${dist.home}">
+            <include name="**/*.jar"/>
+            <not>
+                <selector refid="jax-jars"/>
+            </not>
+        </fileset>
+
+        <!-- Pack200 compress all application jar except jax encoded jars -->
+        <apply executable="${java.home}/bin/pack200.exe" dest="${dist.home}" failonerror="true">
+            <arg value="-J-Xmx256M"/>
+            <arg value="--quiet"/>
+            <arg value="--no-gzip"/>
+            <arg value="--effort=9"/>
+            <targetfile/>
+            <srcfile/>
+            <fileset refid="pack-jars"/>
+            <mapper type="glob" from="*.jar" to="*.pack"/>
+        </apply>
+
+        <!-- Delete packed jars -->
+        <delete>
+            <fileset refid="pack-jars"/>
+        </delete>
+
+        <!-- Delete shared archive and badfonts.txt, will be regenerated during installation -->
+        <delete file="${dist.home}/jre/bin/client/classes.jsa"/>
+        <delete file="${dist.home}/jre/lib/badfonts.txt"/>
+    </target>
+
+    <target name="fulldist" depends="prepare-fulldist" description="Runnable distribution, similar to what installer installs" >
+        <!-- Unpack jars in JRE -->
+        <apply executable="${java.home}/bin/unpack200.exe" dest="${dist.home}" failonerror="true">
+            <arg value="--remove-pack-file"/>
+            <srcfile/>
+            <targetfile/>
+            <fileset dir="${dist.home}" includes="**/*.pack"/>
+            <mapper type="glob" from="*.pack" to="*.jar"/>
+        </apply>
+        <!-- Rebuild classes.jsa -->
+        <exec executable="${dist.home}/jre/bin/javaw.exe">
+            <arg value="-Xshare:dump"/>
+        </exec> 
+    </target>
+
+    <target name="prepare-inno" depends="prepare">
+        <!-- Set property for iss script filtering -->
+        <property name="installer.basename" value="${branding.installer.basename}"/>
+
+        <property name="iss.skin.sourcepath" location="${dist.home.path}/extra-skins"/>
+        <property name="iss.skin.outputpath" location="${build.home.path}/skin-installers"/>
+        <property name="iss.skin.licensefile" location="installer/licenses/photopulse.txt"/>
+
+        <!-- Unzip Inno Setup tools -->
+        <unzip src="installer/inno.zip" dest="${build.home}/inno"/>
+
+        <!-- Copy installer scripts -->
+        <copy todir="${build.home}">
+            <fileset dir="installer">
+                <include name="*.iss"/>
+            </fileset>
+            <!-- Expand Ant properties and strip comments -->
+            <filterchain>
+                <expandproperties/>
+                <striplinecomments>
+                    <comment value=";"/>
+                </striplinecomments>
+            </filterchain>
+        </copy>
+    </target>
+
+    <!-- Invoked via subant. ${basedir} is the skin directory ${dist.home}/extra-skins/[skin].
+        ${skin.installers} is where installers should be created.
+        ${skin.source} is where skin source is,
+        ${skin.iss} is prefiltered install script.
+        ${skin.iscc} is Inno compiler.
+        ${skinlist.xml} skin catalog XML to generate. -->
+    <target name="skin-installer">
+        <!-- Derive skin name from directory -->
+        <pathconvert property="skin.name" targetos="windows">
+            <path path="${basedir}"/>
+            <mapper type="flatten"/>
+        </pathconvert>
+        <!-- Copy thumbnail into skin-installers -->
+        <copy tofile="${skin.installers}/${skin.name}.png"
+                file="${basedir}/thumbnail.png" failonerror="false"/>
+        <!-- Filter install script with skin name -->
+        <copy tofile="${skin.source}/${skin.name}.iss" file="${skin.iss}">
+            <filterset>
+                <filter token="SKIN" value="${skin.name}"/>
+            </filterset>
+        </copy>
+        <!-- Build installer using filtered script -->
+        <exec executable="${skin.iscc}" failonerror="true">
+            <arg file="${skin.source}/${skin.name}.iss"/>
+        </exec>
+        <!-- Concatenate XML element to skinlist.xml using name extracted from skin.txt properties. -->
+        <loadproperties srcFile="${basedir}/skin.txt">
+            <filterchain>
+                <prefixlines prefix="skinprop."/>
+                <linecontains>
+                  <contains value="name="/>
+                </linecontains>
+                <tokenfilter>
+                    <filetokenizer/>
+                    <replacestring from="&amp;" to="&amp;amp;"/>
+                </tokenfilter>
+            </filterchain>
+        </loadproperties>
+        <concat destfile="${skinlist.xml}" append="true">
+            &lt;skin name="${skin.name}" title="${skinprop.name}" /&gt;
+        </concat>
+    </target>
+
+    <target name="skin-installers" depends="prepare-inno">
+        <!-- Add frame skins to extra-skins -->
+        <copy todir="${dist.home}/extra-skins">
+            <fileset dir="skins/frames">
+                <exclude name="src/"/>
+            </fileset>
+        </copy>
+
+        <mkdir dir="${build.home.path}/skin-installers"/>
+
+        <dirset id="skin.directories" dir="${dist.home}/extra-skins" includes="*"/>
+        <property name="skinlist.xml" location="${build.home}/skinlist.xml"/>
+
+        <concat destfile="${skinlist.xml}">&lt;skinlist&gt;</concat>
+
+        <!-- Invoke skin-installer target for each skin directory -->
+        <subant genericantfile="${ant.file}" target="skin-installer">
+            <dirset refid="skin.directories"/>
+            <property name="skin.installers" location="${build.home.path}/skin-installers"/>
+            <property name="skin.source" location="${dist.home}/extra-skins"/>
+            <property name="skin.iss" location="${build.home}/skins.iss"/>
+            <property name="skin.iscc" location="${build.home}/inno/iscc.exe"/>
+            <property name="skinlist.xml" value="${skinlist.xml}"/>
+        </subant>
+
+        <concat destfile="${skinlist.xml}" append="true">&lt;/skinlist&gt;</concat>
+
+        <!-- Invoke xslt on the generated skinlist.xml file. -->
+        <xslt style="src/doc/skins/skin-installers.xsl" in="${skinlist.xml}" out="${build.home.path}/skin-installers/skin-installers.html"/>
+    </target>
+
+    <target name="app-installer" depends="installerdist, prepare-inno" description="Build application installer">
+        <!-- Delete skins we don't want for this branding -->
+        <delete>
+            <fileset dir="${dist.home}/skins"
+                    includes="${branding.skins.excludes}"
+                    excludes="${branding.skins.includes}"/>
+        </delete>
+
+        <!-- Move some skins (if not already deleted) into extra-skins - included in skin installer but not app -->
+        <mkdir dir="${dist.home}/extra-skins"/>
+        <move todir="${dist.home}/extra-skins">
+            <fileset dir="${dist.home}/skins">
+                <include name="35mmSlideFrame/"/>
+                <include name="corkboard/"/>
+                <include name="device/"/>
+                <include name="flashassist/"/>
+                <include name="tv/"/>
+                <include name="Gold03Frame/"/>
+                <include name="StPatricksDayFrame/"/>
+            </fileset>
+        </move>
+
+        <!-- Build app installer -->
+        <exec executable="${build.home}/inno/iscc.exe" failonerror="true">
+            <arg file="${build.home}/photopulse.iss"/>
+        </exec>
+    </target>
+
+    <!-- Build skin and app installers using Inno Setup. -->
+    <target name="installer" depends="app-installer, skin-installers" description="Build skin and application installers">
+    </target>
+
+    <!-- Export a tagged build and build the installer.
+        Requires export.tag property.
+        Set branding to the prefix of one of the propery files in the branding directory.
+        export.target can be set to the target to run after exporting (e.g. installer or app-installer)
+        Example: build export-installer -Dexport.tag=XXX -Dbranding=photica
+    -->
+    <target name="export-installer" depends="prepare">
+        <fail unless="branding" message="Property 'branding' must be set to the prefix of one of the propery files in the branding directory."/>
+        <fail unless="export.tag" message="Property 'export.tag' must be set to the git product tag."/>
+
+        <delete dir="${build.home}/export-${branding}-${export.tag}"/>
+        <echo message="Exporting tag ${branding}/${export.tag}"/>
+        <exec executable="git" logError="true" output="${build.home}/export-${branding}-${export.tag}.zip" failonerror="true">
+            <arg value="archive"/>
+            <arg value="--format=zip"/>
+            <arg value="-0"/>
+            <arg value="${export.tag}"/>
+        </exec>
+        <unzip src="${build.home}/export-${branding}-${export.tag}.zip"
+            dest="${build.home}/export-${branding}-${export.tag}"/>
+
+        <ant inheritAll="false" target="${export.target}" dir="${build.home}/export-${branding}-${export.tag}">
+            <property name="branding" value="${branding}"/>
+            <property name="build.version" value="${build.version}"/>
+            <property name="build.home" value="${build.home.path}/export-${branding}-${export.tag}/build"/>
+            <property name="dist.home" value="${build.home.path}/export-${branding}-${export.tag}/dist"/>
+            <property name="installer.basename" value="${branding.installer.basename}-${export.tag}"/>
+        </ant>
+
+        <move todir="${build.home}">
+            <fileset dir="${build.home}/export-${branding}-${export.tag}/build/">
+                <include name="*.exe"/>
+            </fileset>
+        </move>
+        <move todir="${build.home}/skin-installers">
+            <fileset dir="${build.home}/export-${branding}-${export.tag}/build/skin-installers"/>
+        </move>
+    </target>
+
+    <!-- Run photopulse from dist - for debugging. Specify -Dargs command line -->
+    <target name="run-console" depends="dist-console">
+        <java jar="${dist.home}/lib/ui-console.jar"
+                fork="true" failonerror="true">
+            <jvmarg value="-Dphotopulse.home=${dist.home}"/>
+            <arg line="${args}"/>
+        </java>
+    </target>
+
+    <!-- Run photopulse Wizard from dist -->
+    <target name="run-wizard" depends="dist-wizard">
+        <java jar="${dist.home}/lib/ui-wizard.jar"
+                fork="true" failonerror="true">
+            <jvmarg value="-Dphotopulse.home=${dist.home}"/>
+            <arg line="${args}"/>
+        </java>
+    </target>
+
+    <target name="docbook" depends="prepare, branding">
+        <mkdir dir="${build.home}/doc"/>
+        <!-- Extract docbook -->
+        <unzip src="src/doc/tools/docbook.zip" dest="${build.home}/doc"/>
+        <!-- Extract docbook DTD -->
+        <unzip src="src/doc/tools/docbook-dtd.zip" dest="${build.home}/doc/dtd"/>
+
+        <!-- Copy XML catalog -->
+        <copy file="src/doc/tools/catalog.xml" todir="${build.home}/doc"/>
+
+        <copy todir="${build.home}/doc">
+            <fileset dir="src/doc/help/xsl"/>
+            <filterchain>
+                <expandproperties/>
+            </filterchain>
+        </copy>
+        <mkdir dir="${build.home}/help"/>
+        <!-- Copy stylesheet and images -->
+        <copy todir="${build.home}/help">
+            <fileset dir="src/doc/help/xml">
+                <include name="help.css"/>
+                <include name="images/*"/>
+                <exclude name="images/src"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="docs-website" depends="docbook, photopulse-tools">
+        <java classname="com.icl.saxon.StyleSheet" fork="true" failonerror="true"
+                dir="${build.home}/help"
+                classpath="lib/build/resolver.jar;lib/build/saxon.jar">
+            <sysproperty key="xml.catalog.files" file="${build.home}/doc/catalog.xml"/>
+            <sysproperty key="javax.xml.transform.TransformerFactory" value="com.icl.saxon.TransformerFactoryImpl"/>
+            <sysproperty key="javax.xml.parsers.DocumentBuilderFactory" value="com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl"/>
+            <sysproperty key="javax.xml.parsers.SAXParserFactory" value="com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl"/>
+            <arg value="-x"/> <arg value="com.sun.resolver.tools.ResolvingXMLReader"/>
+            <arg value="-y"/> <arg value="com.sun.resolver.tools.ResolvingXMLReader"/>
+            <arg value="-r"/> <arg value="com.sun.resolver.tools.CatalogResolver"/>
+            <arg value="-o"/> <arg file="${build.home}/help/PhotoPulse.html"/>
+            <arg file="src/doc/help/xml/UserGuide.xml"/>
+            <arg file="${build.home}/doc/html.xsl"/>
+        </java>
+
+        <!-- Generate trans/effect samples -->
+        <java classname="com.photica.photopulse.samples.GenerateSamples" fork="true"
+                classpath="${tools.home}/tools.jar">
+            <sysproperty key="photopulse.home" file="${dist.home}"/>
+            <arg file="${build.home}/help"/>
+            <arg file="src/art/sample/sample.gif"/>
+        </java>
+    </target>
+
+    <target name="docs-help" depends="docbook">
+        <!-- Convert XML to MS HtmlHelp format. Xalan (in JDK 1.4.1) fails
+            with docbook. So we use Saxon, but it doesn't work well with <style>
+            so we fork it. Avoid using Saxons builtin parser, it fails with docbook. -->
+        <java classname="com.icl.saxon.StyleSheet" fork="true" failonerror="true"
+                dir="${build.home}/help"
+                classpath="lib/build/resolver.jar;lib/build/saxon.jar">
+            <sysproperty key="xml.catalog.files" file="${build.home}/doc/catalog.xml"/>
+            <sysproperty key="javax.xml.transform.TransformerFactory" value="com.icl.saxon.TransformerFactoryImpl"/>
+            <sysproperty key="javax.xml.parsers.DocumentBuilderFactory" value="com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl"/>
+            <sysproperty key="javax.xml.parsers.SAXParserFactory" value="com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl"/>
+            <arg value="-x"/> <arg value="com.sun.resolver.tools.ResolvingXMLReader"/>
+            <arg value="-y"/> <arg value="com.sun.resolver.tools.ResolvingXMLReader"/>
+            <arg value="-r"/> <arg value="com.sun.resolver.tools.CatalogResolver"/>
+            <arg file="src/doc/help/xml/UserGuide.xml"/>
+            <arg file="${build.home}/doc/htmlhelp.xsl"/>
+            <arg value="htmlhelp.chm=PhotoPulse.chm"/>
+            <arg value="htmlhelp.hhp=PhotoPulse.hhp"/>
+            <arg value="htmlhelp.hhc=PhotoPulse.hhc"/>
+            <!-- XXX workaround bug, htmlhelp does not enumerate css -->
+            <arg value="htmlhelp.hhp.tail=help.css"/>
+        </java>
+
+        <!-- This OCX is needed for HtmlHelp indexing.
+            Must have Administrator privileges to register this DLL on XP. -->
+        <exec executable="regsvr32.exe" failonerror="true">
+            <arg value="/s"/>
+            <arg file="src/doc/tools/hhc/itcc.dll"/>
+        </exec>
+
+        <!-- Use MS HtmlHelp compiler to create PhotoPulse.chm file.
+            It returns 1 on success! (instead of 0)-->
+        <exec executable="src/doc/tools/hhc/hhc.exe"
+                failonerror="false" resultproperty="hhc.result">
+            <arg file="${build.home}/help/PhotoPulse.hhp"/>
+        </exec>
+        <condition property="hhc.failed">
+            <not><equals arg1="${hhc.result}" arg2="1"/></not>
+        </condition>
+
+        <!-- Unregister OCX now we finished compiling, before we fail -->
+        <exec executable="regsvr32.exe" failonerror="true">
+            <arg value="/s"/>
+            <arg value="/u"/>
+            <arg file="src/doc/tools/hhc/itcc.dll"/>
+        </exec>
+
+        <fail if="hhc.failed">HtmlHelp hhc.exe compiler failed</fail>
+    </target>
+
+    <target name="clean">
+        <delete dir="${build.home}"/>
+        <delete dir="${dist.home}"/>
+    </target>
+
+</project>

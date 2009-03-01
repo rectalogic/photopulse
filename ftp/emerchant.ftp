@@ -1,0 +1,5 @@
+# $Rev: 555 $
+description=emerchant-services FTP Upload
+signupURL=http://www.emerchant-services.com
+hostname=videos.emerchant-services.com
+viewURLTemplate=http://www.emerchant-services.com/${userName}/videos/${showName}

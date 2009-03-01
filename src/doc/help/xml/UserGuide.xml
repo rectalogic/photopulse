@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- ***** BEGIN LICENSE BLOCK *****
+   - Version: MPL 1.1
+   -
+   - The contents of this file are subject to the Mozilla Public License Version
+   - 1.1 (the "License"); you may not use this file except in compliance with
+   - the License. You may obtain a copy of the License at
+   - http://www.mozilla.org/MPL/
+   -
+   - Software distributed under the License is distributed on an "AS IS" basis,
+   - WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+   - for the specific language governing rights and limitations under the
+   - License.
+   -
+   - The Original Code is Photica Photopulse.
+   -
+   - The Initial Developer of the Original Code is
+   - Photica Inc.
+   - Portions created by the Initial Developer are Copyright (C) 2003
+   - the Initial Developer. All Rights Reserved.
+   -
+   - Contributor(s):
+   - Andrew Wason, Mike Mills
+   - info@photica.com
+   -
+   - ***** END LICENSE BLOCK ***** -->
+
+<!DOCTYPE article
+	PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+	"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+
+<!ENTITY introduction.xml SYSTEM "introduction.xml">
+<!ENTITY new.xml SYSTEM "new.xml">
+<!ENTITY overview.xml SYSTEM "overview.xml">
+	<!ENTITY photos.xml SYSTEM "photos.xml">
+	<!ENTITY music.xml SYSTEM "music.xml">
+	<!ENTITY effects.xml SYSTEM "effects.xml">
+	<!ENTITY create.xml SYSTEM "create.xml">
+<!ENTITY settings.xml SYSTEM "settings.xml">
+	<!ENTITY themes.xml SYSTEM "themes.xml">
+ 		<!ENTITY themes-advanced.xml SYSTEM "themes-advanced.xml">
+<!ENTITY expert.xml SYSTEM "expert.xml">
+	<!ENTITY panzoom.xml SYSTEM "panzoom.xml">
+<!ENTITY projects.xml SYSTEM "projects.xml">
+<!ENTITY upload.xml SYSTEM "upload.xml">
+<!ENTITY menu.xml SYSTEM "menu.xml">
+<!ENTITY license.xml SYSTEM "license.xml">
+<!ENTITY uninstall.xml SYSTEM "uninstall.xml">
+<!ENTITY contact.xml SYSTEM "contact.xml">
+<!ENTITY requirements.xml SYSTEM "requirements.xml">
+]>
+
+<article>
+	<title vendor="photica">Photica <application>PhotoPulse</application></title>
+
+	&introduction.xml;
+	&new.xml;
+	&overview.xml;
+	&settings.xml;
+	&expert.xml;
+	&projects.xml;
+	&upload.xml;
+	&menu.xml;
+	&license.xml;
+	&uninstall.xml;
+	&contact.xml;
+	&requirements.xml;
+</article>
+

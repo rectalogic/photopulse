@@ -1,0 +1,8 @@
+# $Rev: 555 $
+# http://www.ftpplanet.com/tutorial/users.asp?host=FortuneCity
+description=FortuneCity FTP Upload
+hostname=ftp.FortuneCity.com
+directory=photopulse
+viewURLTemplate=http://members.FortuneCity.com/${userName}/photopulse/${showName}${showExt}
+manageURLTemplate=ftp://${userName}@ftp.FortuneCity.com/
+signupURL=http://members.fortunecity.com/

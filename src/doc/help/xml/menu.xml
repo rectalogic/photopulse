@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- ***** BEGIN LICENSE BLOCK *****
+   - Version: MPL 1.1
+   -
+   - The contents of this file are subject to the Mozilla Public License Version
+   - 1.1 (the "License"); you may not use this file except in compliance with
+   - the License. You may obtain a copy of the License at
+   - http://www.mozilla.org/MPL/
+   -
+   - Software distributed under the License is distributed on an "AS IS" basis,
+   - WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+   - for the specific language governing rights and limitations under the
+   - License.
+   -
+   - The Original Code is Photica Photopulse.
+   -
+   - The Initial Developer of the Original Code is
+   - Photica Inc.
+   - Portions created by the Initial Developer are Copyright (C) 2003
+   - the Initial Developer. All Rights Reserved.
+   -
+   - Contributor(s):
+   - Andrew Wason, Mike Mills
+   - info@photica.com
+   -
+   - ***** END LICENSE BLOCK ***** -->
+
+<section>
+	<title>Menus</title>
+	<para>
+	This section provides a brief description of each menu option.
+ 	Please choose a menu for more information.
+	<!-- Assumes section toc generation is on -->
+	</para>
+	<section id="menu.File">
+		<title>File Menu</title>
+		<indexterm><primary>menus</primary><secondary>File</secondary></indexterm>
+		<para>
+			<variablelist>
+				<varlistentry><term>New Project</term>
+					<listitem>
+						<para>
+							Create a new, empty project. This is the same as quitting and
+							starting the program over again.
+							<phrase userlevel="expert">See <xref linkend="projects"/> for more information.</phrase>
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry userlevel="expert"><term>Open Project...</term>
+					<listitem>
+						<para>
+							Open an existing project file, replacing your current project.
+							See <xref linkend="projects"/> for more information.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry userlevel="expert"><term>Save Project</term>
+					<listitem>
+						<para>
+							Save the project you are currently working on.
+							If the current project has never been saved, you will be prompted to provide a file name.
+							See <xref linkend="projects"/> for more information.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry userlevel="expert"><term>Save Project As...</term>
+					<listitem>
+						<para>
+							Save the project you are currently working on under a new file name.
+							This is convenient if you want to use an
+							existing project as the base for a new project. You
+							can open the existing project and then <guimenuitem>Save As...</guimenuitem>
+							a new project file name.
+							See <xref linkend="projects"/> for more information.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Photos...</term>
+					<listitem>
+						<para>
+							See <xref linkend="photos"/>.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Music...</term>
+					<listitem>
+						<para>
+							See <xref linkend="music"/>.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Create...</term>
+					<listitem>
+						<para>
+							See <xref linkend="overview"/>.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Exit</term>
+					<listitem>
+						<para>
+							Quit the application.
+							<phrase userlevel="expert">If the project
+							you are working on has never been saved or been modified
+							since the last time it was saved,
+							you will be prompted to save it.
+							See <xref linkend="projects"/>
+							</phrase>
+						</para>
+					</listitem>
+				</varlistentry>
+			</variablelist>
+		</para>
+	</section>
+	<section id="menu.Edit">
+		<title>Edit Menu</title>
+		<indexterm><primary>menus</primary><secondary>Edit</secondary></indexterm>
+		<para>
+			<variablelist>
+				<varlistentry><term>Cut</term>
+					<listitem>
+						<para>
+							The <guimenuitem>Cut</guimenuitem> menu item will
+							delete the currently selected photos in the <guilabel>Photos Tab</guilabel>
+ 							and place them on the clipboard.
+							This photos on the clipboard can then be pasted back via the <guimenuitem>Paste</guimenuitem>
+							menu item.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Copy</term>
+					<listitem>
+						<para>
+							The <guimenuitem>Copy</guimenuitem> menu item will copy the currently selected
+ 							photos in the <guilabel>Photos Tab</guilabel> to the clipboard.
+							This photos on the clipboard can then be pasted back via the <guimenuitem>Paste</guimenuitem>
+ 							menu item.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Paste</term>
+					<listitem>
+						<para>
+							Paste the photos on the clipboard into the position before the currently selected photo.
+ 							If multiple photos or no photos are selected, then the photos will be pasted
+ 							after the last photo in the show.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry id="menu.Edit.Delete"><term>Delete</term>
+					<listitem>
+						<para>
+							Deletes the currently selected photos from the show.
+							You cannot undo a delete so please be careful when
+							deleting photos.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Select All</term>
+					<listitem>
+						<para>
+							If the <guilabel>Photos Tab</guilabel> is active, this selects all the photos.
+							If one of the <guilabel>Transitions and Effects Tabs</guilabel> are active,
+ 							this checks all the transitions and effects checkboxes on that tab.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Deselect All</term>
+					<listitem>
+						<para>
+							If the <guilabel>Photos Tab</guilabel> is active,  this deselects all the photos.
+							If one of the <guilabel>Transitions and Effects Tabs</guilabel> are active,
+ 							this unchecks all the transitions and effects checkboxes on that tab.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Upload Settings...</term>
+					<listitem>
+						<para>
+							See <xref linkend="upload"/>.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry userlevel="expert"><term>Randomize Effects</term>
+					<listitem>
+						<para>
+							See <xref linkend="expert.RandomizeEffects"/> for more information.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry userlevel="expert"><term>Redistribute Time</term>
+					<listitem>
+						<para>
+							See <xref linkend="expert.RedistributeTime"/> for more information.
+						</para>
+					</listitem>
+				</varlistentry>
+			</variablelist>
+		</para>
+	</section>
+	<section id="menu.View" userlevel="expert">
+		<title>View Menu</title>
+		<indexterm><primary>menus</primary><secondary>View</secondary></indexterm>
+		<para>
+			<variablelist>
+				<varlistentry><term>Expert Mode</term>
+					<listitem>
+						<para>
+							Switches <application>PhotoPulse</application> into expert mode when checked.
+ 							See <xref linkend="expert"/> for more information.
+						</para>
+					</listitem>
+				</varlistentry>
+			</variablelist>
+		</para>
+	</section>
+	<section id="menu.Tools">
+		<title>Tools Menu</title>
+		<indexterm><primary>menus</primary><secondary>Tools</secondary></indexterm>
+		<para>
+			<variablelist>
+				<varlistentry><term>Build MP3 Playlist...</term>
+					<listitem>
+						<para>
+							Display an MP3 playlist editor dialog allowing you
+							to create a playlist with multiple MP3 music files.
+							See <xref linkend="music.playlist"/> for more information.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Upload Show..</term>
+					<listitem>
+						<para>
+							Upload a show to your web site.
+							See <xref linkend="upload"/> for more information.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Manage Uploaded Shows</term>
+					<listitem>
+						<para>
+							Go to your hosting providers online file management site in your web browser.
+							If the hosting provider you have currently selected does
+							not support online file management, this menu item will be disabled.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>View Show</term>
+					<listitem>
+						<para>
+							View the most recently created show,
+							e.g. this will display an HTML show in your web browser.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry id="menu.neoDVD"><term>Create DVD</term>
+					<listitem>
+						<para>
+							If neoDVD is installed and the most recently created show was
+ 							a video format show,
+							this will launch neoDVD with that video, allowing you to burn it to DVD.
+						</para>
+					</listitem>
+				</varlistentry>
+			</variablelist>
+		</para>
+	</section>
+	<section id="menu.Help">
+		<title>Help Menu</title>
+		<indexterm><primary>menus</primary><secondary>Help</secondary></indexterm>
+		<para>
+			<variablelist>
+				<varlistentry><term>Help</term>
+					<listitem>
+						<para>
+							Launches the help system where you can get
+							information on how to use the program.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Quickstart Guide</term>
+					<listitem>
+						<para>
+							Describes the simplest and fastest means for creating a show.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Enter License Key...</term>
+					<listitem>
+						<para>
+							Provides a popup screen where you can enter a license key
+							to unlock the software.
+							See <xref linkend="license"/> for more information.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>Register</term>
+					<listitem>
+						<para>
+							Launches your web browser to the <application>PhotoPulse</application> web site where you can register for
+							additional information.
+						</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry><term>About <application>PhotoPulse</application></term>
+					<listitem>
+						<para>
+							Displays a dialog which provides information on the software version and your
+							serial number and license key information.
+						</para>
+					</listitem>
+				</varlistentry>
+			</variablelist>
+		</para>
+	</section>
+</section>
+

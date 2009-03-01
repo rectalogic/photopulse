@@ -1,0 +1,169 @@
+/* ***** BEGIN LICENSE BLOCK *****
+ * Version: MPL 1.1
+ *
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ * The Original Code is Photica Photopulse.
+ *
+ * The Initial Developer of the Original Code is
+ * Photica Inc.
+ * Portions created by the Initial Developer are Copyright (C) 2002
+ * the Initial Developer. All Rights Reserved.
+ *
+ * Contributor(s):
+ * Andrew Wason, Mike Mills
+ * info@photica.com
+ *
+ * ***** END LICENSE BLOCK ***** */
+
+[Begin_Command]
+	Name						Insert Shape Tween
+	Type						1
+	Token						com.photica.photopulse.commands.InsertShapeTweenCommand
+	Resource					Generator.Rsrc
+	ResID						304
+
+	[Value]
+		Name				Shape
+		Type				String
+		Token				shape
+		DValue				
+		HelpString			Specifies the name of the shape
+
+	[Value]
+		Name				Shape Type
+		Type				List
+		Token				type
+		DValue				Shape
+		ValueList			Shape
+		ValueList			MorphShape
+		HelpString			Specifies the type of the shape
+
+	[Value]
+		Name				Initial Width
+		Type				Number
+		Token				initwidth
+		DValue				0
+		HelpString			Specifies the initial width of the shape (0 means intrinsic width)
+
+	[Value]
+		Name				Initial Height
+		Type				Number
+		Token				initheight
+		DValue				0
+		HelpString			Specifies the initial height of the shape (0 means intrinsic height)
+
+	[Value]
+		Name				Expand Radius
+		Type				List
+		Token				expand
+		DValue				false
+		ValueList			false
+		ValueList			true
+		HelpString			If true, expand width/height to bound a circle whose radius encloses the original sizes.
+
+	[Value]
+		Name				Maintain Aspect Ratio
+		Type				List
+		Token				aspect
+		DValue				true
+		ValueList			false
+		ValueList			true
+		HelpString			If true, maintain the aspect ratio of the shape when resizing to width/height.
+
+	[Value]
+		Name				Duration
+		Type				Number
+		Token				duration
+		DValue				0
+		HelpString			Specifies the tween duration in seconds (frames if negative)
+
+	[Value]
+		Name				Insert Frames
+		Type				List
+		Token				insertframes
+		DValue				false
+		ValueList			false
+		ValueList			true
+		HelpString			If true, insert frames after the current frame. Otherwise append frames to the timeline.
+
+	[Value]
+		Name				Begin X Offset
+		Type				Number
+		Token				xbegin
+		DValue				0
+		HelpString			Specifies the starting X offset from center
+
+	[Value]
+		Name				Begin Y Offset
+		Type				Number
+		Token				ybegin
+		DValue				0
+		HelpString			Specifies the starting Y offset from center
+
+	[Value]
+		Name				End X Offset
+		Type				Number
+		Token				xend
+		DValue				0
+		HelpString			Specifies the ending X offset from center
+
+	[Value]
+		Name				End Y Offset
+		Type				Number
+		Token				yend
+		DValue				0
+		HelpString			Specifies the ending Y offset from center
+
+	[Value]
+		Name				Begin Scale X
+		Type				Number
+		Token				beginscalex
+		DValue				100
+		HelpString			Specifies the starting scale factor of the target
+
+	[Value]
+		Name				Begin Scale Y
+		Type				Number
+		Token				beginscaley
+		DValue				100
+		HelpString			Specifies the starting scale factor of the target
+
+	[Value]
+		Name				End Scale X
+		Type				Number
+		Token				endscalex
+		DValue				100
+		HelpString			Specifies the ending scale factor of the target
+
+	[Value]
+		Name				End Scale Y
+		Type				Number
+		Token				endscaley
+		DValue				100
+		HelpString			Specifies the ending scale factor of the target
+
+	[Value]
+		Name				Begin Rotation
+		Type				String
+		Token				beginrotation
+		DValue				0
+		HelpString			Specifies the number of degrees by which to rotate the instance. Positive numbers rotate it to the right. Negative numbers rotate it to the left.
+
+	[Value]
+		Name				End Rotation
+		Type				String
+		Token				endrotation
+		DValue				0
+		HelpString			Specifies the number of degrees by which to rotate the instance. Positive numbers rotate it to the right. Negative numbers rotate it to the left.
+
+[End_Command]
+

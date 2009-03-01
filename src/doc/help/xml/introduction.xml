@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- ***** BEGIN LICENSE BLOCK *****
+   - Version: MPL 1.1
+   -
+   - The contents of this file are subject to the Mozilla Public License Version
+   - 1.1 (the "License"); you may not use this file except in compliance with
+   - the License. You may obtain a copy of the License at
+   - http://www.mozilla.org/MPL/
+   -
+   - Software distributed under the License is distributed on an "AS IS" basis,
+   - WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+   - for the specific language governing rights and limitations under the
+   - License.
+   -
+   - The Original Code is Photica Photopulse.
+   -
+   - The Initial Developer of the Original Code is
+   - Photica Inc.
+   - Portions created by the Initial Developer are Copyright (C) 2003
+   - the Initial Developer. All Rights Reserved.
+   -
+   - Contributor(s):
+   - Andrew Wason, Mike Mills
+   - info@photica.com
+   -
+   - ***** END LICENSE BLOCK ***** -->
+
+<section>
+	<title>Introduction</title>
+	<para>
+		Welcome to the <trademark><application>PhotoPulse</application></trademark> software user's guide.
+		This guide fully explains the <application>PhotoPulse</application> software to enable you to use
+		the program to its fullest potential.
+	</para>
+	<para condition="help">
+		This guide documents <application>PhotoPulse</application> version
+		<phrase condition="version"/>.
+		<phrase vendor="photica">
+			The latest version of this guide is always available
+			online at the
+			<ulink url="http://www.photopulse.com/help/"><application>PhotoPulse</application> website</ulink>.
+		</phrase>
+	</para>
+	<para>
+		<application>PhotoPulse</application> provides a <emphasis>fast and easy</emphasis> way
+		for you to combine your digital photo and music files into an
+		exciting motion filled presentation. In just a couple of minutes
+		you can convert a folder full of photos into a fun show
+		with sophisticated transitions and effects. This show can
+		easily be shared with friends and family via the Internet or CDROM.
+	</para>
+</section>
